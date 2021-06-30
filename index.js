@@ -1,45 +1,46 @@
 import createRequire from 'create-require';
 
-const require = globalThis.require ?? createRequire(import.meta.url);
+const resolvePath = (globalThis.require ?? createRequire(import.meta.url))
+	.resolve;
 
-const assert = require.resolve('assert/');
-const buffer = require.resolve('buffer/');
+const assert = resolvePath('assert/');
+const buffer = resolvePath('buffer/');
 const child_process = null;
 const cluster = null;
-const _console = require.resolve('console-browserify');
-const constants = require.resolve('constants-browserify');
-const crypto = require.resolve('crypto-browserify');
+const _console = resolvePath('console-browserify');
+const constants = resolvePath('constants-browserify');
+const crypto = resolvePath('crypto-browserify');
 const dgram = null;
 const dns = null;
-const domain = require.resolve('domain-browser');
-const events = require.resolve('events/');
+const domain = resolvePath('domain-browser');
+const events = resolvePath('events/');
 const fs = null;
-const http = require.resolve('stream-http');
-const https = require.resolve('https-browserify');
+const http = resolvePath('stream-http');
+const https = resolvePath('https-browserify');
 const _module = null;
 const net = null;
-const os = require.resolve('os-browserify/browser.js');
-const path = require.resolve('path-browserify');
-const punycode = require.resolve('punycode/');
-const _process = require.resolve('process/browser.js');
-const querystring = require.resolve('querystring-es3/');
+const os = resolvePath('os-browserify/browser.js');
+const path = resolvePath('path-browserify');
+const punycode = resolvePath('punycode/');
+const _process = resolvePath('process/browser.js');
+const querystring = resolvePath('querystring-es3/');
 const readline = null;
 const repl = null;
-const stream = require.resolve('stream-browserify');
-const _stream_duplex = require.resolve('readable-stream/duplex.js');
-const _stream_passthrough = require.resolve('readable-stream/passthrough.js');
-const _stream_readable = require.resolve('readable-stream/readable.js');
-const _stream_transform = require.resolve('readable-stream/transform.js');
-const _stream_writable = require.resolve('readable-stream/writable.js');
-const string_decoder = require.resolve('string_decoder/');
-const sys = require.resolve('util/util.js');
-const timers = require.resolve('timers-browserify');
+const stream = resolvePath('stream-browserify');
+const _stream_duplex = resolvePath('readable-stream/duplex.js');
+const _stream_passthrough = resolvePath('readable-stream/passthrough.js');
+const _stream_readable = resolvePath('readable-stream/readable.js');
+const _stream_transform = resolvePath('readable-stream/transform.js');
+const _stream_writable = resolvePath('readable-stream/writable.js');
+const string_decoder = resolvePath('string_decoder/');
+const sys = resolvePath('util/util.js');
+const timers = resolvePath('timers-browserify');
 const tls = null;
-const tty = require.resolve('tty-browserify');
-const url = require.resolve('url/');
-const util = require.resolve('util/util.js');
-const vm = require.resolve('vm-browserify');
-const zlib = require.resolve('browserify-zlib');
+const tty = resolvePath('tty-browserify');
+const url = resolvePath('url/');
+const util = resolvePath('util/util.js');
+const vm = resolvePath('vm-browserify');
+const zlib = resolvePath('browserify-zlib');
 
 export {
 	assert,
