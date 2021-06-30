@@ -4,14 +4,28 @@
 			"@babel/preset-env",
 			{
 				"modules": false,
-				"loose": true,
-				"targets": {
-					"node": "10"
-				}
+				"loose": true
 			}
 		]
 	],
 	"plugins": ["babel-plugin-transform-globalthis"],
+	"overrides": [
+		{
+			"test": "./index.js",
+			"presets": [
+				[
+					"@babel/preset-env",
+					{
+						"modules": false,
+						"loose": true,
+						"targets": {
+							"node": "10"
+						}
+					}
+				]
+			]
+		}
+	],
 	"env": {
 		"test": {
 			"plugins": ["babel-plugin-istanbul"]
