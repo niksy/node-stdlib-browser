@@ -6,6 +6,9 @@
 		"eslint-config-prettier"
 	],
 	"plugins": ["eslint-plugin-prettier"],
+	"globals": {
+		"globalThis": false
+	},
 	"rules": {
 		"prettier/prettier": 1,
 		"camelcase": 0
@@ -13,9 +16,6 @@
 	"overrides": [
 		{
 			"files": "mock/*.js",
-			"globals": {
-				"globalThis": false
-			},
 			"env": {
 				"browser": true
 			}
