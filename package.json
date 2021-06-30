@@ -1,0 +1,87 @@
+{
+  "name": "node-std-browser",
+  "version": "0.0.0",
+  "description": "Node standard library for browser.",
+  "license": "MIT",
+  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "cjs/",
+    "esm/",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "release": "np --no-release-draft",
+    "version": "if [ $(git rev-parse --abbrev-ref HEAD) == 'master' ]; then version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md; else echo; fi",
+    "postpublish": "GITHUB_TOKEN=$GITHUB_RELEASE_TOKEN github-release-from-changelog",
+    "lint": "eslint '{index,lib/**/*,test/**/*}.js'",
+    "test": "([ -z $WATCH_TEST ] && npm run lint || echo) && BABEL_ENV=test nyc mocha --require @babel/register --require esm 'test/**/*.js' && nyc check-coverage",
+    "test:watch": "WATCH_TEST=1 nodemon --exec npm test",
+    "build": "rollup --config rollup.config.js",
+    "module-check": "node -e 'require(\"node-std-browser\");' && node --input-type=module -e 'import \"node-std-browser\";'",
+    "prepublishOnly": "npm run build && npm run module-check"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/register": "^7.0.0",
+    "@rollup/plugin-babel": "^5.2.1",
+    "babel-plugin-istanbul": "^6.0.0",
+    "changelog-verify": "^1.1.2",
+    "core-js": "^2.6.5",
+    "eslint": "^7.11.0",
+    "eslint-config-niksy": "^9.0.0",
+    "eslint-config-prettier": "^6.14.0",
+    "eslint-plugin-extend": "^0.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^30.7.3",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-unicorn": "^23.0.0",
+    "esm": "^3.0.51",
+    "github-release-from-changelog": "^2.1.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.2",
+    "mocha": "^8.2.0",
+    "nodemon": "^2.0.6",
+    "np": "^6.5.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.1.2",
+    "rollup": "^2.32.1",
+    "version-changelog": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "node",
+    "std",
+    "browser",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niksy/node-std-browser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niksy/node-std-browser/issues"
+  },
+  "homepage": "https://github.com/niksy/node-std-browser#readme"
+}
