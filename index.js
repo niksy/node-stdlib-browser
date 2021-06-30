@@ -1,4 +1,4 @@
-import { createRequire } from 'module';
+import createRequire from 'create-require';
 
 const require = globalThis.require ?? createRequire(import.meta.url);
 
