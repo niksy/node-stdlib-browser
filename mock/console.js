@@ -1,16 +1,6 @@
-/* eslint-disable vars-on-top, no-inner-declarations */
+const _console = globalThis.console ?? {};
 
-var console;
-if (typeof global !== 'undefined' && global.console) {
-	console = global.console;
-} else if (typeof window !== 'undefined' && window.console) {
-	console = window.console;
-} else {
-	console = window.console = {};
-}
-
-module.exports = console;
-for (var name in {
+const consoleApi = {
 	log: 1,
 	info: 1,
 	error: 1,
@@ -20,5 +10,12 @@ for (var name in {
 	assert: 1,
 	time: 1,
 	timeEnd: 1
-})
-	if (!console[name]) console[name] = function () {};
+};
+
+for (const property in consoleApi) {
+	if (!_console[property]) {
+		_console[property] = function () {};
+	}
+}
+
+export default _console;

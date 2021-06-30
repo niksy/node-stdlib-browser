@@ -13,6 +13,9 @@
 	"overrides": [
 		{
 			"files": "mock/*.js",
+			"globals": {
+				"globalThis": false
+			},
 			"env": {
 				"browser": true
 			}

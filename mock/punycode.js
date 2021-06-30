@@ -1,11 +1,19 @@
-exports.ucs2 = {};
-exports.encode =
-	exports.decode =
-	exports.ucs2.encode =
-	exports.ucs2.decode =
-	exports.toUnicode =
-	exports.toASCII =
-		function (s) {
-			return s;
-		};
-exports.version = '0.0.0';
+function passthrough(s) {
+	return s;
+}
+
+const ucs2 = {
+	encode: passthrough,
+	decode: passthrough
+};
+
+const version = '0.0.0';
+
+export {
+	ucs2,
+	version,
+	passthrough as encode,
+	passthrough as decode,
+	passthrough as toUnicode,
+	passthrough as toASCII
+};

@@ -4,12 +4,14 @@
 			"@babel/preset-env",
 			{
 				"modules": false,
+				"loose": true,
 				"targets": {
 					"node": "10"
 				}
 			}
 		]
 	],
+	"plugins": ["babel-plugin-transform-globalthis"],
 	"env": {
 		"test": {
 			"plugins": ["babel-plugin-istanbul"]

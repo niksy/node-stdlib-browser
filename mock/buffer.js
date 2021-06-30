@@ -5,6 +5,6 @@ Buffer.isBuffer = function () {
 	return false;
 };
 
-exports.INSPECT_MAX_BYTES = 50;
-exports.SlowBuffer = Buffer;
-exports.Buffer = Buffer;
+const INSPECT_MAX_BYTES = 50;
+
+export { INSPECT_MAX_BYTES, Buffer as SlowBuffer, Buffer };
