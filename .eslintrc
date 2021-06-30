@@ -7,6 +7,15 @@
 	],
 	"plugins": ["eslint-plugin-prettier"],
 	"rules": {
-		"prettier/prettier": 1
-	}
+		"prettier/prettier": 1,
+		"camelcase": 0
+	},
+	"overrides": [
+		{
+			"files": "mock/*.js",
+			"env": {
+				"browser": true
+			}
+		}
+	]
 }
