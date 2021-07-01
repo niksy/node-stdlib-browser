@@ -5,13 +5,14 @@
 		"eslint-config-niksy/next",
 		"eslint-config-prettier"
 	],
-	"plugins": ["eslint-plugin-prettier"],
+	"plugins": ["eslint-plugin-prettier", "eslint-plugin-unicorn"],
 	"globals": {
 		"globalThis": false
 	},
 	"rules": {
 		"prettier/prettier": 1,
-		"camelcase": 0
+		"camelcase": 0,
+		"unicorn/prefer-flat-map": 0
 	},
 	"overrides": [
 		{

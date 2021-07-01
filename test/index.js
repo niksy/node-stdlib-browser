@@ -1,9 +1,9 @@
 /* eslint-disable import/no-namespace */
 
 import assert from 'assert';
-import * as api from '../index';
+import api from '../index';
 
-const packagePaths = {
+const packages = {
 	_stream_duplex: 'node_modules/readable-stream/duplex.js',
 	_stream_passthrough: 'node_modules/readable-stream/passthrough.js',
 	_stream_readable: 'node_modules/readable-stream/readable.js',
@@ -45,10 +45,14 @@ const packagePaths = {
 };
 
 it('should properly resolve package paths', function () {
-	Object.entries(packagePaths).forEach(([packageName, packagePath]) => {
+	Object.entries(packages).forEach(([packageName, packagePath]) => {
 		assert.ok(
 			api[packageName]?.includes(packagePath) ??
 				api[packageName] === packagePath
+		);
+		assert.ok(
+			api[`node:${packageName}`]?.includes(packagePath) ??
+				api[`node:${packageName}`] === packagePath
 		);
 	});
 });

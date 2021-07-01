@@ -42,12 +42,12 @@ const util = resolvePath('util/util.js');
 const vm = resolvePath('vm-browserify');
 const zlib = resolvePath('browserify-zlib');
 
-export {
+const packages = {
 	assert,
 	buffer,
 	child_process,
 	cluster,
-	_console as console,
+	console: _console,
 	constants,
 	crypto,
 	dgram,
@@ -57,12 +57,12 @@ export {
 	fs,
 	http,
 	https,
-	_module as module,
+	module: _module,
 	net,
 	os,
 	path,
 	punycode,
-	_process as process,
+	process: _process,
 	querystring,
 	readline,
 	repl,
@@ -82,3 +82,14 @@ export {
 	vm,
 	zlib
 };
+
+const packagesWithNodeProtocol = Object.fromEntries(
+	[].concat(
+		...Object.entries(packages).map(([packageName, packagePath]) => [
+			[packageName, packagePath],
+			[`node:${packageName}`, packagePath]
+		])
+	)
+);
+
+export default packagesWithNodeProtocol;
