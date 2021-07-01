@@ -12,7 +12,7 @@ const packages = {
 	_stream_readable: 'node_modules/readable-stream/readable.js',
 	_stream_transform: 'node_modules/readable-stream/transform.js',
 	_stream_writable: 'node_modules/readable-stream/writable.js',
-	assert: 'node_modules/assert/assert.js',
+	assert: 'node_modules/assert/build/assert.js',
 	buffer: 'node_modules/buffer/index.js',
 	child_process: null,
 	cluster: null,
@@ -53,13 +53,20 @@ it('should properly resolve package paths', function () {
 		assert.ok(
 			api[packageName]?.includes(path.resolve(context, packagePath)) ??
 				api[packageName] === packagePath,
-			`Package path not valid for "${packageName}"`
+			`Package path not valid for "${packageName}", got "${api[packageName]}"`
 		);
+	});
+});
+
+it('should properly resolve package paths for `node:` protocol', function () {
+	Object.entries(packages).forEach(([packageName, packagePath]) => {
 		assert.ok(
 			api[`node:${packageName}`]?.includes(
 				path.resolve(context, packagePath)
 			) ?? api[`node:${packageName}`] === packagePath,
-			`Package path not valid for "node:${packageName}"`
+			`Package path not valid for "node:${packageName}", got "${
+				api[`node:${packageName}`]
+			}"`
 		);
 	});
 });
