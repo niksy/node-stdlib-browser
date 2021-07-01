@@ -1,7 +1,10 @@
 /* eslint-disable import/no-namespace */
 
 import assert from 'assert';
+import path from 'path';
 import api from '../index';
+
+const context = path.resolve(__dirname, '../');
 
 const packages = {
 	_stream_duplex: 'node_modules/readable-stream/duplex.js',
@@ -36,7 +39,7 @@ const packages = {
 	string_decoder: 'node_modules/string_decoder/lib/string_decoder.js',
 	sys: 'node_modules/util/util.js',
 	timers: 'node_modules/timers-browserify/main.js',
-	'timers/promises': 'node_modules/isomorphic-timers-promises/cjs/index.js',
+	'timers/promises': 'proxy/timers-promises.js',
 	tls: null,
 	tty: 'node_modules/tty-browserify/index.js',
 	url: 'node_modules/url/url.js',
@@ -48,13 +51,14 @@ const packages = {
 it('should properly resolve package paths', function () {
 	Object.entries(packages).forEach(([packageName, packagePath]) => {
 		assert.ok(
-			api[packageName]?.includes(packagePath) ??
+			api[packageName]?.includes(path.resolve(context, packagePath)) ??
 				api[packageName] === packagePath,
 			`Package path not valid for "${packageName}"`
 		);
 		assert.ok(
-			api[`node:${packageName}`]?.includes(packagePath) ??
-				api[`node:${packageName}`] === packagePath,
+			api[`node:${packageName}`]?.includes(
+				path.resolve(context, packagePath)
+			) ?? api[`node:${packageName}`] === packagePath,
 			`Package path not valid for "node:${packageName}"`
 		);
 	});
