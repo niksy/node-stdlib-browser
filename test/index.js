@@ -49,11 +49,13 @@ it('should properly resolve package paths', function () {
 	Object.entries(packages).forEach(([packageName, packagePath]) => {
 		assert.ok(
 			api[packageName]?.includes(packagePath) ??
-				api[packageName] === packagePath
+				api[packageName] === packagePath,
+			`Package path not valid for "${packageName}"`
 		);
 		assert.ok(
 			api[`node:${packageName}`]?.includes(packagePath) ??
-				api[`node:${packageName}`] === packagePath
+				api[`node:${packageName}`] === packagePath,
+			`Package path not valid for "node:${packageName}"`
 		);
 	});
 });
