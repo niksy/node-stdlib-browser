@@ -36,6 +36,7 @@ const packages = {
 	string_decoder: 'node_modules/string_decoder/lib/string_decoder.js',
 	sys: 'node_modules/util/util.js',
 	timers: 'node_modules/timers-browserify/main.js',
+	'timers/promises': 'node_modules/isomorphic-timers-promises/cjs/index.js',
 	tls: null,
 	tty: 'node_modules/tty-browserify/index.js',
 	url: 'node_modules/url/url.js',

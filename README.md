@@ -101,46 +101,47 @@ module.exports = {
 
 ## Package contents
 
-| Module                | Browser implementation                                                       | Mock implementation        |
-| --------------------- | ---------------------------------------------------------------------------- | -------------------------- |
-| `assert`              | [assert](https://github.com/browserify/commonjs-assert)                      |                            |
-| `buffer`              | [buffer](https://github.com/feross/buffer)                                   | [buffer](mock/buffer.js)   |
-| `child_process`       |                                                                              |                            |
-| `cluster`             |                                                                              |                            |
-| `console`             | [console-browserify](https://github.com/browserify/console-browserify)       | [console](mock/console.js) |
-| `constants`           | [constants-browserify](https://github.com/juliangruber/constants-browserify) |                            |
-| `crypto`              | [crypto-browserify](https://github.com/crypto-browserify/crypto-browserify)  |                            |
-| `dgram`               |                                                                              |                            |
-| `dns`                 |                                                                              | [dns](mock/dns.js)         |
-| `domain`              | [domain-browser](https://github.com/bevry/domain-browser)                    |                            |
-| `events`              | [events](https://github.com/browserify/events)                               |                            |
-| `fs`                  |                                                                              |                            |
-| `http`                | [stream-http](https://github.com/jhiesey/stream-http)                        |                            |
-| `https`               | [https-browserify](https://github.com/substack/https-browserify)             |                            |
-| `module`              |                                                                              |                            |
-| `net`                 |                                                                              | [net](mock/net.js)         |
-| `os`                  | [os-browserify](https://github.com/CoderPuppy/os-browserify)                 |                            |
-| `path`                | [path-browserify](https://github.com/browserify/path-browserify)             |                            |
-| `process`             | [process](https://github.com/defunctzombie/node-process)                     | [process](mock/process.js) |
-| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                          |                            |
-| `querystring`         | [querystring-es3](https://github.com/mike-spainhower/querystring)            |                            |
-| `readline`            |                                                                              |                            |
-| `repl`                |                                                                              |                            |
-| `stream`              | [stream-browserify](https://github.com/browserify/stream-browserify)         |                            |
-| `string_decoder`      | [string_decoder](https://github.com/nodejs/string_decoder)                   |                            |
-| `sys`                 | [util](https://github.com/browserify/node-util)                              |                            |
-| `timers`              | [timers-browserify](https://github.com/browserify/timers-browserify)         |                            |
-| `tls`                 |                                                                              | [tls](mock/tls.js)         |
-| `tty`                 | [tty-browserify](https://github.com/browserify/tty-browserify)               | [tty](mock/tty.js)         |
-| `url`                 | [url](https://github.com/defunctzombie/node-url)                             |                            |
-| `util`                | [util](https://github.com/browserify/node-util)                              |                            |
-| `vm`                  | [vm-browserify](https://github.com/browserify/vm-browserify)                 |                            |
-| `zlib`                | [browserify-zlib](https://github.com/browserify/browserify-zlib)             |                            |
-| `_stream_duplex`      | [readable-stream](https://github.com/nodejs/readable-stream)                 |                            |
-| `_stream_passthrough` | [readable-stream](https://github.com/nodejs/readable-stream)                 |                            |
-| `_stream_readable`    | [readable-stream](https://github.com/nodejs/readable-stream)                 |                            |
-| `_stream_transform`   | [readable-stream](https://github.com/nodejs/readable-stream)                 |                            |
-| `_stream_writable`    | [readable-stream](https://github.com/nodejs/readable-stream)                 |                            |
+| Module                | Browser implementation                                                            | Mock implementation        |
+| --------------------- | --------------------------------------------------------------------------------- | -------------------------- |
+| `assert`              | [assert](https://github.com/browserify/commonjs-assert)                           |                            |
+| `buffer`              | [buffer](https://github.com/feross/buffer)                                        | [buffer](mock/buffer.js)   |
+| `child_process`       |                                                                                   |                            |
+| `cluster`             |                                                                                   |                            |
+| `console`             | [console-browserify](https://github.com/browserify/console-browserify)            | [console](mock/console.js) |
+| `constants`           | [constants-browserify](https://github.com/juliangruber/constants-browserify)      |                            |
+| `crypto`              | [crypto-browserify](https://github.com/crypto-browserify/crypto-browserify)       |                            |
+| `dgram`               |                                                                                   |                            |
+| `dns`                 |                                                                                   | [dns](mock/dns.js)         |
+| `domain`              | [domain-browser](https://github.com/bevry/domain-browser)                         |                            |
+| `events`              | [events](https://github.com/browserify/events)                                    |                            |
+| `fs`                  |                                                                                   |                            |
+| `http`                | [stream-http](https://github.com/jhiesey/stream-http)                             |                            |
+| `https`               | [https-browserify](https://github.com/substack/https-browserify)                  |                            |
+| `module`              |                                                                                   |                            |
+| `net`                 |                                                                                   | [net](mock/net.js)         |
+| `os`                  | [os-browserify](https://github.com/CoderPuppy/os-browserify)                      |                            |
+| `path`                | [path-browserify](https://github.com/browserify/path-browserify)                  |                            |
+| `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) |
+| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            |
+| `querystring`         | [querystring-es3](https://github.com/mike-spainhower/querystring)                 |                            |
+| `readline`            |                                                                                   |                            |
+| `repl`                |                                                                                   |                            |
+| `stream`              | [stream-browserify](https://github.com/browserify/stream-browserify)              |                            |
+| `string_decoder`      | [string_decoder](https://github.com/nodejs/string_decoder)                        |                            |
+| `sys`                 | [util](https://github.com/browserify/node-util)                                   |                            |
+| `timers`              | [timers-browserify](https://github.com/browserify/timers-browserify)              |                            |
+| `timers/promises`     | [isomorphic-timers-promises](https://github.com/niksy/isomorphic-timers-promises) |                            |
+| `tls`                 |                                                                                   | [tls](mock/tls.js)         |
+| `tty`                 | [tty-browserify](https://github.com/browserify/tty-browserify)                    | [tty](mock/tty.js)         |
+| `url`                 | [url](https://github.com/defunctzombie/node-url)                                  |                            |
+| `util`                | [util](https://github.com/browserify/node-util)                                   |                            |
+| `vm`                  | [vm-browserify](https://github.com/browserify/vm-browserify)                      |                            |
+| `zlib`                | [browserify-zlib](https://github.com/browserify/browserify-zlib)                  |                            |
+| `_stream_duplex`      | [readable-stream](https://github.com/nodejs/readable-stream)                      |                            |
+| `_stream_passthrough` | [readable-stream](https://github.com/nodejs/readable-stream)                      |                            |
+| `_stream_readable`    | [readable-stream](https://github.com/nodejs/readable-stream)                      |                            |
+| `_stream_transform`   | [readable-stream](https://github.com/nodejs/readable-stream)                      |                            |
+| `_stream_writable`    | [readable-stream](https://github.com/nodejs/readable-stream)                      |                            |
 
 ## API
 

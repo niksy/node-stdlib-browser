@@ -35,6 +35,7 @@ const _stream_writable = resolvePath('readable-stream/writable.js');
 const string_decoder = resolvePath('string_decoder/');
 const sys = resolvePath('util/util.js');
 const timers = resolvePath('timers-browserify');
+const timersPromises = resolvePath('isomorphic-timers-promises');
 const tls = null;
 const tty = resolvePath('tty-browserify');
 const url = resolvePath('url/');
@@ -75,6 +76,7 @@ const packages = {
 	string_decoder,
 	sys,
 	timers,
+	'timers/promises': timersPromises,
 	tls,
 	tty,
 	url,
