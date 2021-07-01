@@ -144,9 +144,9 @@ module.exports = {
 
 ## API
 
-### methodName(arg, [optionalArg])
+### packages
 
-Returns: `Mixed`
+Returns: `Object`
 
 Exports absolute paths to each module, keyed by module names. Modules without
 browser replacements return `null`.
@@ -154,82 +154,33 @@ browser replacements return `null`.
 Some modules have mocks in the mock directory. These are replacements with
 minimal functionality.
 
-#### arg
-
-Type: `Mixed`
-
-arg description.
-
-#### optionalArg
-
-Type: `Object`
-
-optionalArg description.
-
-##### prop1
-
-Type: `String`  
-Default: `'3'`
-
-`prop1` description.
-
-##### prop2
-
-Type: `Number`  
-Default: `3`
-
-##### prop3
-
-Type: `Number[]`  
-Default: `[1, 2, 3]`
-
-##### prop4
-
-Type: `Number[]` `String[]`  
-Default: `['1', '2', '3']`
-
-`prop4` description.
-
-##### prop5
-
-Type: `Function`  
-Default: `noop`
-
-`prop5` description.
-
-Function arguments:
-
--   **arg1** `String` arg1 description
--   **arg2** `Number` arg2 description
--   **arg3** `Element` `Boolean` arg3 description
-
-> Alternative approach
-
-| Property | Type                  | Default           | Description                                              |
-| -------- | --------------------- | ----------------- | -------------------------------------------------------- |
-| `prop1`  | `String`              | `'3'`             | `prop1` description.                                     |
-| `prop2`  | `Number`              | `3`               | `prop2` description.                                     |
-| `prop3`  | `Number[]`            | `[1, 2, 3]`       | `prop3` description.                                     |
-| `prop4`  | `Number[]` `String[]` | `['1', '2', '3']` | `prop4` description.                                     |
-| `prop5`  | `Function`            | `noop`            | `prop5` description. (No function arguments description) |
-
----
-
 ## Outdated versions
 
 ### `buffer`
 
-The current `buffer` implementation uses feross/buffer@4.x because
-feross/buffer@5.x relies on
-[typed arrays](https://github.com/feross/buffer/commit/5daca86b7cd5d2b8ccb167534d47421029f639e9#commitcomment-19698936).
-This will be dropped as soon as IE9 is not a typical browser target anymore.
+The current `buffer` implementation uses `buffer@4` because `buffer@5` relies on
+typed arrays. This will be dropped as soon as IE9 is not a typical browser
+target anymore.
 
 ### `punycode`
 
-The current `punycode` implementation uses bestiejs/punycode.js@1.x because
-bestiejs/punycode.js@2.x requires modern JS engines that understand `const` and
-`let`. It will be removed someday since it has already been
-[deprecated from the node API](https://nodejs.org/api/punycode.html).
+The current `punycode` implementation uses `punycode.js@1` because
+`punycode.js@2` requires modern JS engines that understand `const` and `let`. It
+will be removed someday since it has already been deprecated from the node API.
+
+## Node support
+
+Minimum supported version should be Node 10.
+
+If you’re using ESM in Node < 12.20, note that
+[subpath patterns](https://nodejs.org/api/packages.html#packages_subpath_patterns)
+are not supported so mocks can’t be handled. In that case, it’s recommended to
+use CommonJS implementation
+
+## Browser support
+
+Minimum supported version should be Internet Explorer 11, but most modules
+support even Internet Explorer 9.
 
 ## License
 
