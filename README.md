@@ -70,13 +70,13 @@ module.exports = {
 
 ### Rollup
 
-Since many packages expose only CommonJS implementation, you need to apply
-plugins to handle CommonJS exports. Additionally, it’s recommended to handle
-Node globals automatically.
-
 <details>
 	
 <summary>Show me</summary>
+
+Since many packages expose only CommonJS implementation, you need to apply
+plugins to handle CommonJS exports. Additionally, it’s recommended to handle
+Node globals automatically.
 
 ```js
 // rollup.config.js
@@ -155,20 +155,6 @@ browser replacements return `null`.
 Some modules have mocks in the mock directory. These are replacements with
 minimal functionality.
 
-## Outdated versions
-
-### `buffer`
-
-The current `buffer` implementation uses `buffer@4` because `buffer@5` relies on
-typed arrays. This will be dropped as soon as IE9 is not a typical browser
-target anymore.
-
-### `punycode`
-
-The current `punycode` implementation uses `punycode.js@1` because
-`punycode.js@2` requires modern JS engines that understand `const` and `let`. It
-will be removed someday since it has already been deprecated from the node API.
-
 ## Node support
 
 Minimum supported version should be Node 10.
@@ -176,7 +162,7 @@ Minimum supported version should be Node 10.
 If you’re using ESM in Node < 12.20, note that
 [subpath patterns](https://nodejs.org/api/packages.html#packages_subpath_patterns)
 are not supported so mocks can’t be handled. In that case, it’s recommended to
-use CommonJS implementation
+use CommonJS implementation.
 
 ## Browser support
 
