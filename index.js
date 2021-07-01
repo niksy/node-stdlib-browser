@@ -1,4 +1,5 @@
 import createRequire from 'create-require';
+import fromEntries from '@ungap/from-entries';
 
 const resolvePath = (globalThis.require ?? createRequire(import.meta.url))
 	.resolve;
@@ -85,7 +86,7 @@ const packages = {
 	zlib
 };
 
-const packagesWithNodeProtocol = Object.fromEntries(
+const packagesWithNodeProtocol = fromEntries(
 	[].concat(
 		...Object.entries(packages).map(([packageName, packagePath]) => [
 			[packageName, packagePath],
