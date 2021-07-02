@@ -9,10 +9,11 @@ Features:
 -   Based on [`node-libs-browser`](https://github.com/webpack/node-libs-browser)
     for Webpack
 -   Maintained with newer versions and modern implementations
+-   Works with Webpack and Rollup
 -   Exports implementation with
     [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
-    allows for builtin modules to be referenced by valid absolute URL strings
--   Works with Webpack and Rollup
+    allows for builtin modules to be referenced by valid absolute URL strings -
+    [**This currently doesn’t work in Webpack**](https://github.com/webpack/webpack/issues/13290)
 
 ## Install
 
@@ -75,15 +76,20 @@ module.exports = {
 <summary>Show me</summary>
 
 Since many packages expose only CommonJS implementation, you need to apply
-plugins to handle CommonJS exports. Additionally, it’s recommended to handle
-Node globals automatically.
+plugins to handle CommonJS exports. Those packages could have dependencies
+installed with npm so they need to be properly resolved. Additionally, it’s
+recommended to handle Node globals automatically.
+
+Some dependencies can have circular dependencies and Rollup will warn you about
+that. You can ignore those warning with `onwarn` function.
 
 ```js
 // rollup.config.js
 const { default: stdBrowser } = require('node-std-browser');
-const alias = require('@rollup/plugin-alias');
-const commonjs = require('@rollup/plugin-commonjs');
 const globals = require('rollup-plugin-node-globals');
+const { default: resolve } = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const alias = require('@rollup/plugin-alias');
 
 module.exports = {
 	// ...
@@ -91,9 +97,23 @@ module.exports = {
 		alias({
 			entries: stdBrowser
 		}),
+		resolve(),
 		commonjs(),
 		globals()
-	]
+	],
+	onwarn: (warning, rollupWarn) => {
+		const packagesWithCircularDependencies = ['util/', 'assert/'];
+		if (
+			!(
+				warning.code === 'CIRCULAR_DEPENDENCY' &&
+				packagesWithCircularDependencies.some((modulePath) =>
+					warning.importer.includes(modulePath)
+				)
+			)
+		) {
+			rollupWarn(warning);
+		}
+	}
 };
 ```
 
