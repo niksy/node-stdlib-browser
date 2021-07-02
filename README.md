@@ -12,8 +12,8 @@ Features:
 -   Works with Webpack and Rollup
 -   Exports implementation with
     [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
-    allows for builtin modules to be referenced by valid absolute URL strings -
-    [**This currently doesn’t work in Webpack**](https://github.com/webpack/webpack/issues/13290)
+    allows for builtin modules to be referenced by valid absolute URL strings
+    ([**this currently doesn’t work in Webpack**](https://github.com/webpack/webpack/issues/13290))
 
 ## Install
 
@@ -43,7 +43,8 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.ProvidePlugin({
-			process: stdBrowser.process
+			process: stdBrowser.process,
+			Buffer: stdBrowser.buffer
 		})
 	]
 };
@@ -98,6 +99,7 @@ const stdBrowser = require('node-std-browser');
 const globals = require('rollup-plugin-node-globals');
 const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
+const json = require('@rollup/plugin-json');
 const alias = require('@rollup/plugin-alias');
 
 module.exports = {
@@ -110,10 +112,16 @@ module.exports = {
 			browser: true
 		}),
 		commonjs(),
+		json(),
 		globals()
 	],
 	onwarn: (warning, rollupWarn) => {
-		const packagesWithCircularDependencies = ['util/', 'assert/'];
+		const packagesWithCircularDependencies = [
+			'util/',
+			'assert/',
+			'readable-stream/',
+			'crypto-browserify/'
+		];
 		if (
 			!(
 				warning.code === 'CIRCULAR_DEPENDENCY' &&
