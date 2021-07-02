@@ -2,12 +2,16 @@ import createRequire from 'create-require';
 import pkgDir from 'pkg-dir';
 import fromEntries from '@ungap/from-entries';
 
-const resolvePath = (path) => {
+const resolvePath = (path, options = {}) => {
+	const { forceEsmForProxy = true } = options;
 	const resolvedPath = (
 		globalThis.require ?? createRequire(import.meta.url)
 	).resolve(path);
 	if (!path.includes('./')) {
 		return pkgDir.sync(resolvedPath);
+	}
+	if (forceEsmForProxy) {
+		return resolvedPath.replace('/cjs/', '/esm/');
 	}
 	return resolvedPath;
 };
@@ -44,7 +48,7 @@ const _stream_writable = resolvePath('readable-stream/writable.js');
 const string_decoder = resolvePath('string_decoder/');
 const sys = resolvePath('util/util.js');
 const timers = resolvePath('timers-browserify');
-const timersPromises = resolvePath('./proxy/timers-promises.js');
+const timersPromises = resolvePath('./proxy/timers/promises.js');
 const tls = resolvePath('./mock/empty.js');
 const tty = resolvePath('tty-browserify');
 const url = resolvePath('url/');
@@ -84,8 +88,8 @@ const packages = {
 	_stream_writable,
 	string_decoder,
 	sys,
-	timers,
 	'timers/promises': timersPromises,
+	timers,
 	tls,
 	tty,
 	url,

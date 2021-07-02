@@ -39,7 +39,7 @@ const packages = {
 	string_decoder: 'node_modules/string_decoder',
 	sys: 'node_modules/util',
 	timers: 'node_modules/timers-browserify',
-	'timers/promises': 'proxy/timers-promises.js',
+	'timers/promises': 'proxy/timers/promises.js',
 	tls: 'mock/empty.js',
 	tty: 'node_modules/tty-browserify',
 	url: 'node_modules/url',
