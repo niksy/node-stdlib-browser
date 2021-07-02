@@ -8,7 +8,9 @@ const resolvePath = (path, options = {}) => {
 		globalThis.require ?? createRequire(import.meta.url)
 	).resolve(path);
 	if (!path.includes('./')) {
-		return pkgDir.sync(resolvedPath);
+		const directory = pkgDir.sync(resolvedPath);
+		// Use real package.json root path
+		return directory.replace(/\/(cjs|esm)$/, '');
 	}
 	if (forceEsmForProxy) {
 		return resolvedPath.replace('/cjs/', '/esm/');
@@ -48,7 +50,7 @@ const _stream_writable = resolvePath('readable-stream/writable.js');
 const string_decoder = resolvePath('string_decoder/');
 const sys = resolvePath('util/util.js');
 const timers = resolvePath('timers-browserify');
-const timersPromises = resolvePath('./proxy/timers/promises.js');
+const timersPromises = resolvePath('isomorphic-timers-promises');
 const tls = resolvePath('./mock/empty.js');
 const tty = resolvePath('tty-browserify');
 const url = resolvePath('url/');
