@@ -32,7 +32,7 @@ const packages = {
 	path: 'node_modules/path-browserify',
 	process: 'node_modules/process',
 	punycode: 'node_modules/punycode',
-	querystring: 'node_modules/querystring-es3',
+	querystring: 'proxy/querystring.js',
 	readline: 'mock/empty.js',
 	repl: 'mock/empty.js',
 	stream: 'node_modules/stream-browserify',
@@ -42,7 +42,7 @@ const packages = {
 	'timers/promises': 'node_modules/isomorphic-timers-promises',
 	tls: 'mock/empty.js',
 	tty: 'node_modules/tty-browserify',
-	url: 'node_modules/url',
+	url: 'proxy/url.js',
 	util: 'node_modules/util',
 	vm: 'node_modules/vm-browserify',
 	zlib: 'node_modules/browserify-zlib'

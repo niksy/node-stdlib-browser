@@ -68,5 +68,7 @@ module.exports = [
 	'mock/process.js',
 	'mock/punycode.js',
 	'mock/tls.js',
-	'mock/tty.js'
+	'mock/tty.js',
+	'proxy/url.js',
+	'proxy/querystring.js'
 ].map((filename) => getConfig(filename));

@@ -143,7 +143,7 @@ module.exports = {
 | `path`                | [path-browserify](https://github.com/browserify/path-browserify)                  |                            |
 | `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) |
 | `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            |
-| `querystring`         | [querystring-es3](https://github.com/mike-spainhower/querystring)                 |                            |
+| `querystring`         | [native-querystring](https://github.com/niksy/native-querystring)                 |                            |
 | `readline`            |                                                                                   |                            |
 | `repl`                |                                                                                   |                            |
 | `stream`              | [stream-browserify](https://github.com/browserify/stream-browserify)              |                            |
@@ -153,7 +153,7 @@ module.exports = {
 | `timers/promises`     | [isomorphic-timers-promises](https://github.com/niksy/isomorphic-timers-promises) |                            |
 | `tls`                 |                                                                                   | [tls](mock/tls.js)         |
 | `tty`                 | [tty-browserify](https://github.com/browserify/tty-browserify)                    | [tty](mock/tty.js)         |
-| `url`                 | [url](https://github.com/defunctzombie/node-url)                                  |                            |
+| `url`                 | [native-url](https://github.com/GoogleChromeLabs/native-url)                      |                            |
 | `util`                | [util](https://github.com/browserify/node-util)                                   |                            |
 | `vm`                  | [vm-browserify](https://github.com/browserify/vm-browserify)                      |                            |
 | `zlib`                | [browserify-zlib](https://github.com/browserify/browserify-zlib)                  |                            |
