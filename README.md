@@ -77,8 +77,9 @@ module.exports = {
 
 Since many packages expose only CommonJS implementation, you need to apply
 plugins to handle CommonJS exports. Those packages could have dependencies
-installed with npm so they need to be properly resolved. Additionally, it’s
-recommended to handle Node globals automatically.
+installed with npm so they need to be properly resolved (taking into account
+browser-specific implementations). Additionally, it’s recommended to handle Node
+globals automatically.
 
 Some dependencies can have circular dependencies and Rollup will warn you about
 that. You can ignore those warning with `onwarn` function.
@@ -97,7 +98,9 @@ module.exports = {
 		alias({
 			entries: stdBrowser
 		}),
-		resolve(),
+		resolve({
+			browser: true
+		}),
 		commonjs(),
 		globals()
 	],
