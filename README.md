@@ -29,15 +29,23 @@ npm install node-std-browser --save-dev
 	
 <summary>Show me</summary>
 
+As of Webpack 5, aliases and globals provider need to be explicitly configured.
+
 ```js
 // webpack.config.js
-const { default: stdBrowser } = require('node-std-browser');
+const stdBrowser = require('node-std-browser');
+const webpack = require('webpack');
 
 module.exports = {
 	// ...
 	resolve: {
 		alias: stdBrowser
-	}
+	},
+	plugins: [
+		new webpack.ProvidePlugin({
+			process: stdBrowser.process
+		})
+	]
 };
 ```
 
@@ -86,7 +94,7 @@ that. You can ignore those warning with `onwarn` function.
 
 ```js
 // rollup.config.js
-const { default: stdBrowser } = require('node-std-browser');
+const stdBrowser = require('node-std-browser');
 const globals = require('rollup-plugin-node-globals');
 const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
