@@ -7,7 +7,7 @@ import {
 	unescape
 } from 'native-querystring';
 
-export default {
+const api = {
 	decode,
 	encode,
 	escape,
@@ -15,5 +15,7 @@ export default {
 	stringify,
 	unescape
 };
+
+export default api;
 
 export { decode, encode, escape, parse, stringify, unescape };

@@ -4,15 +4,17 @@ const path = require('path');
 const { promises: fs } = require('fs');
 const { default: babel } = require('@rollup/plugin-babel');
 
-function getConfig(filename) {
+function getConfig(filename, options = {}) {
+	const { cjsOutro = '', cjsExports = 'auto' } = options;
 	return {
 		input: filename,
 		output: [
 			{
 				file: `cjs/${filename}`,
 				format: 'cjs',
-				exports: 'auto',
-				sourcemap: true
+				exports: cjsExports,
+				sourcemap: true,
+				outro: cjsOutro
 			},
 			{
 				file: `esm/${filename}`,
@@ -69,6 +71,15 @@ module.exports = [
 	'mock/punycode.js',
 	'mock/tls.js',
 	'mock/tty.js',
-	'proxy/url.js',
-	'proxy/querystring.js'
-].map((filename) => getConfig(filename));
+	[
+		'proxy/url.js',
+		{ cjsOutro: 'exports = module.exports = api;', cjsExports: 'named' }
+	],
+	[
+		'proxy/querystring.js',
+		{ cjsOutro: 'exports = module.exports = api;', cjsExports: 'named' }
+	]
+].map((entry) => {
+	const [filename, options = {}] = [].concat(entry);
+	return getConfig(filename, options);
+});

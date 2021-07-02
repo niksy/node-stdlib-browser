@@ -3,17 +3,12 @@ import pkgDir from 'pkg-dir';
 import fromEntries from '@ungap/from-entries';
 
 const resolvePath = (path, options = {}) => {
-	const { forceEsmForProxy = true } = options;
 	const resolvedPath = (
 		globalThis.require ?? createRequire(import.meta.url)
 	).resolve(path);
 	if (!path.includes('./')) {
 		const directory = pkgDir.sync(resolvedPath);
-		// Use real package.json root path
-		return directory.replace(/\/(cjs|esm)$/, '');
-	}
-	if (forceEsmForProxy) {
-		return resolvedPath.replace('/cjs/', '/esm/');
+		return directory;
 	}
 	return resolvedPath;
 };
