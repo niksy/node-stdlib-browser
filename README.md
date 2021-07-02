@@ -149,8 +149,9 @@ module.exports = {
 
 Returns: `Object`
 
-Exports absolute paths to each module, keyed by module names. Modules without
-browser replacements return `null`.
+Exports absolute paths to each module directory (where `package.json` is
+located), keyed by module names. Modules without browser replacements return
+module with default export `null`.
 
 Some modules have mocks in the mock directory. These are replacements with
 minimal functionality.
