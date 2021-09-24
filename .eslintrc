@@ -20,6 +20,17 @@
 			"env": {
 				"browser": true
 			}
+		},
+		{
+			"files": ["rollup.config.js"],
+			"parserOptions": {
+				"sourceType": "script"
+			},
+			"plugins": ["eslint-plugin-unicorn"],
+			"rules": {
+				"no-console": 0,
+				"unicorn/numeric-separators-style": 0
+			}
 		}
 	]
 }
