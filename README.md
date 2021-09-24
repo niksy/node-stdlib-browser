@@ -50,8 +50,9 @@ module.exports = {
 };
 ```
 
-Some packages such as expose ESM file through `.mjs` extension. Additional
-Webpack configuration could be needed to properly handle those packages.
+Some packages such as `native-url` expose ESM file through `.mjs` extension.
+Additional Webpack configuration could be needed to properly handle those
+packages.
 
 For example, to make `native-url` use ESM version of `native-querystring`, apply
 following configuration:
@@ -66,7 +67,7 @@ module.exports = {
 			{
 				type: 'javascript/auto',
 				test: /\.mjs$/,
-				include: /node_modules\/native-url/,
+				include: /\/native-url\//,
 				resolve: {
 					mainFields: ['module']
 				}
@@ -91,7 +92,8 @@ browser-specific implementations). Additionally, it’s recommended to handle No
 globals automatically.
 
 Some dependencies can have circular dependencies and Rollup will warn you about
-that. You can ignore those warning with `onwarn` function.
+that. You can
+[ignore these warnings with `onwarn` function](https://github.com/rollup/rollup/issues/1089#issuecomment-635564942).
 
 ```js
 // rollup.config.js
@@ -186,7 +188,7 @@ module.exports = {
 
 ### packages
 
-Returns: `Object`
+Returns: `object`
 
 Exports absolute paths to each module directory (where `package.json` is
 located), keyed by module names. Modules without browser replacements return
