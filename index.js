@@ -1,6 +1,5 @@
 import createRequire from 'create-require';
 import pkgDir from 'pkg-dir';
-import fromEntries from '@ungap/from-entries';
 
 const resolvePath = (path, options = {}) => {
 	const resolvedPath = (
@@ -95,13 +94,12 @@ const packages = {
 	zlib
 };
 
-const packagesWithNodeProtocol = fromEntries(
-	[].concat(
-		...Object.entries(packages).map(([packageName, packagePath]) => [
-			[packageName, packagePath],
-			[`node:${packageName}`, packagePath]
-		])
-	)
-);
+const packagesWithNodeProtocol = {};
+for (const [packageName, packagePath] of Object.entries(packages)) {
+	packagesWithNodeProtocol[`node:${packageName}`] = packagePath;
+}
 
-export default packagesWithNodeProtocol;
+export default {
+	...packages,
+	...packagesWithNodeProtocol
+};
