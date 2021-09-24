@@ -1,4 +1,3 @@
-import path from 'path';
 import { format, parse, resolve, resolveObject, Url } from 'native-url';
 
 const URL = globalThis.URL;
@@ -77,11 +76,11 @@ function domainToUnicode(...arguments_) {
 
 function pathToFileURL(filepath) {
 	const outURL = new URL('file://');
-	let resolved = path.resolve(filepath);
+	let resolved = filepath;
 	const filePathLast = filepath.charCodeAt(filepath.length - 1);
 	if (
 		filePathLast === CHAR_FORWARD_SLASH &&
-		resolved[resolved.length - 1] !== path.sep
+		resolved[resolved.length - 1] !== '/'
 	) {
 		resolved += '/';
 	}
