@@ -8,3 +8,7 @@ coverage/
 cjs/
 esm/
 !test/fixtures/node_modules/
+!example/cjs
+!example/esm
+example/cjs/*.dist.js
+example/esm/*.dist.js
