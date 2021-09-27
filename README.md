@@ -13,7 +13,6 @@ Features:
 -   Exports implementation with
     [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
     allows for builtin modules to be referenced by valid absolute URL strings
-    ([**this currently doesn’t work in Webpack**](https://github.com/webpack/webpack/issues/13290))
 
 ## Install
 
