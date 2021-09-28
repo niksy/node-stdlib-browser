@@ -141,7 +141,9 @@ describe('`url` additional exports', function () {
 		}
 		{
 			const fileURL = url.pathToFileURL('\\\\nas\\share\\path.txt').href;
-			assert.match(fileURL, /file:\/\/.+%5C%5Cnas%5Cshare%5Cpath\.txt$/);
+			assert.ok(
+				/file:\/\/.+%5C%5Cnas%5Cshare%5Cpath\.txt$/.test(fileURL)
+			);
 		}
 		{
 			const testCases = [

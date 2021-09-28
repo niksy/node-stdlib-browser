@@ -216,7 +216,7 @@ MIT © [Ivan Nikolić](http://ivannikolic.com)
 
 <!-- prettier-ignore-start -->
 
-[ci]: https://travis-ci.com/niksy/node-std-browser
-[ci-img]: https://travis-ci.com/niksy/node-std-browser.svg?branch=master
+[ci]: https://github.com/niksy/node-std-browser/actions?query=workflow%3ACI
+[ci-img]: https://github.com/niksy/node-std-browser/workflows/CI/badge.svg?branch=master
 
 <!-- prettier-ignore-end -->
