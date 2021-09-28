@@ -144,7 +144,7 @@ module.exports = {
 | Module                | Browser implementation                                                            | Mock implementation        | Notes                                                |
 | --------------------- | --------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------- |
 | `assert`              | [assert](https://github.com/browserify/commonjs-assert)                           |                            |
-| `buffer`              | [buffer](https://github.com/feross/buffer)                                        | [buffer](mock/buffer.js)   |
+| `buffer`              | [buffer](https://github.com/feross/buffer)                                        | [buffer](mock/buffer.js)   | `buffer@5` for IE 11 support                         |
 | `child_process`       |                                                                                   |                            |
 | `cluster`             |                                                                                   |                            |
 | `console`             | [console-browserify](https://github.com/browserify/console-browserify)            | [console](mock/console.js) |
@@ -162,7 +162,7 @@ module.exports = {
 | `os`                  | [os-browserify](https://github.com/CoderPuppy/os-browserify)                      |                            |
 | `path`                | [path-browserify](https://github.com/browserify/path-browserify)                  |                            |
 | `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) |
-| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            |
+| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            | `punycode@1` for browser support                     |
 | `querystring`         | [native-querystring](https://github.com/niksy/native-querystring)                 |                            |
 | `readline`            |                                                                                   |                            |
 | `repl`                |                                                                                   |                            |

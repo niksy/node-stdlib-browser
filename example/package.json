@@ -7,9 +7,9 @@
     "build:rollup:cjs": "rollup --config ./cjs/rollup.config.js",
     "build:rollup:esm": "rollup --config ./esm/rollup.config.mjs",
     "open:webpack:cjs": "open ./cjs/webpack.html",
-    "open:webpack:esm": "open ./cjs/rollup.html",
-    "open:rollup:cjs": "open ./esm/webpack.html",
-    "open:rollup:esm": "open ./cjs/rollup.html"
+    "open:webpack:esm": "open ./esm/webpack.html",
+    "open:rollup:cjs": "open ./cjs/rollup.html",
+    "open:rollup:esm": "open ./esm/rollup.html"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.5",

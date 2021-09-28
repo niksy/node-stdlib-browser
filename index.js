@@ -39,11 +39,15 @@ const querystring = resolvePath('./proxy/querystring.js');
 const readline = resolvePath('./mock/empty.js');
 const repl = resolvePath('./mock/empty.js');
 const stream = resolvePath('stream-browserify');
-const _stream_duplex = resolvePath('readable-stream/duplex.js');
-const _stream_passthrough = resolvePath('readable-stream/passthrough.js');
-const _stream_readable = resolvePath('readable-stream/readable.js');
-const _stream_transform = resolvePath('readable-stream/transform.js');
-const _stream_writable = resolvePath('readable-stream/writable.js');
+const _stream_duplex = resolvePath('readable-stream/lib/_stream_duplex.js');
+const _stream_passthrough = resolvePath(
+	'readable-stream/lib/_stream_passthrough.js'
+);
+const _stream_readable = resolvePath('readable-stream/lib/_stream_readable.js');
+const _stream_transform = resolvePath(
+	'readable-stream/lib/_stream_transform.js'
+);
+const _stream_writable = resolvePath('readable-stream/lib/_stream_writable.js');
 const string_decoder = resolvePath('string_decoder/');
 const sys = resolvePath('util/util.js');
 const timers = resolvePath('timers-browserify');
