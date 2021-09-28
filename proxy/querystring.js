@@ -5,6 +5,7 @@ import {
 	parse,
 	stringify,
 	unescape
+	// @ts-ignore
 } from 'native-querystring';
 
 const api = {

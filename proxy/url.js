@@ -1,3 +1,6 @@
+/* globals unknown */
+
+// @ts-ignore
 import { format, parse, resolve, resolveObject, Url } from 'native-url';
 
 const URL = globalThis.URL;
@@ -11,14 +14,17 @@ const carriageReturnRegEx = /\r/g;
 const tabRegEx = /\t/g;
 const CHAR_FORWARD_SLASH = 47;
 
-function isURLInstance(fileURLOrPath) {
-	return (
-		(fileURLOrPath ?? null) !== null &&
-		fileURLOrPath.href &&
-		fileURLOrPath.origin
-	);
+/**
+ * @param {unknown} instance
+ */
+function isURLInstance(instance) {
+	const resolved = /** @type {URL|null} */ (instance ?? null);
+	return Boolean(resolved !== null && resolved?.href && resolved?.origin);
 }
 
+/**
+ * @param {URL} url
+ */
 function getPathFromURLPosix(url) {
 	if (url.hostname !== '') {
 		throw new TypeError(
@@ -28,6 +34,7 @@ function getPathFromURLPosix(url) {
 	const pathname = url.pathname;
 	for (let n = 0; n < pathname.length; n++) {
 		if (pathname[n] === '%') {
+			// @ts-ignore
 			const third = pathname.codePointAt(n + 2) | 0x20;
 			if (pathname[n + 1] === '2' && third === 102) {
 				throw new TypeError(
@@ -39,6 +46,9 @@ function getPathFromURLPosix(url) {
 	return decodeURIComponent(pathname);
 }
 
+/**
+ * @param {string} filepath
+ */
 function encodePathChars(filepath) {
 	if (filepath.includes('%')) {
 		filepath = filepath.replace(percentRegEx, '%25');
@@ -58,6 +68,9 @@ function encodePathChars(filepath) {
 	return filepath;
 }
 
+/**
+ * @param {unknown[]} arguments_
+ */
 function domainToASCII(...arguments_) {
 	if (arguments_.length === 0) {
 		throw new TypeError('The "domain" argument must be specified');
@@ -66,6 +79,9 @@ function domainToASCII(...arguments_) {
 	return new URL(`http://${domain}`).hostname;
 }
 
+/**
+ * @param {unknown[]} arguments_
+ */
 function domainToUnicode(...arguments_) {
 	if (arguments_.length === 0) {
 		throw new TypeError('The "domain" argument must be specified');
@@ -74,6 +90,9 @@ function domainToUnicode(...arguments_) {
 	return new URL(`http://${domain}`).hostname;
 }
 
+/**
+ * @param {string} filepath
+ */
 function pathToFileURL(filepath) {
 	const outURL = new URL('file://');
 	let resolved = filepath;
@@ -88,18 +107,20 @@ function pathToFileURL(filepath) {
 	return outURL;
 }
 
+/**
+ * @param {URL|string} path
+ */
 function fileURLToPath(path) {
-	if (typeof path === 'string') {
-		path = new URL(path);
-	} else if (!isURLInstance(path)) {
+	if (!isURLInstance(path) && typeof path !== 'string') {
 		throw new TypeError(
 			`The "path" argument must be of type string or an instance of URL. Received type ${typeof path} (${path})`
 		);
 	}
-	if (path.protocol !== 'file:') {
+	const resolved = new URL(path);
+	if (resolved.protocol !== 'file:') {
 		throw new TypeError('The URL must be of scheme file');
 	}
-	return getPathFromURLPosix(path);
+	return getPathFromURLPosix(resolved);
 }
 
 const api = {

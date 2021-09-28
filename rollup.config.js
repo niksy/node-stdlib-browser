@@ -3,6 +3,8 @@
 const path = require('path');
 const { promises: fs } = require('fs');
 const { default: babel } = require('@rollup/plugin-babel');
+const execa = require('execa');
+const cpy = require('cpy');
 
 function getConfig(filename, options = {}) {
 	const { cjsOutro = '', cjsExports = 'auto' } = options;
@@ -23,6 +25,54 @@ function getConfig(filename, options = {}) {
 			}
 		],
 		plugins: [
+			(() => {
+				return {
+					name: 'types',
+					async writeBundle(output) {
+						let prefix;
+						if (output.file.includes('cjs/')) {
+							prefix = 'cjs';
+						} else if (output.file.includes('esm/')) {
+							prefix = 'esm';
+						}
+						if (typeof prefix !== 'undefined') {
+							const tsconfig = {
+								extends: './tsconfig',
+								exclude: ['test/**/*.js'],
+								compilerOptions: {
+									declaration: true,
+									declarationMap: true,
+									declarationDir: prefix,
+									emitDeclarationOnly: true,
+									noEmit: false,
+									listEmittedFiles: true
+								}
+							};
+							const file = `.${prefix}.tsconfig.json`;
+							try {
+								await fs.writeFile(
+									file,
+									JSON.stringify(tsconfig),
+									'utf-8'
+								);
+								const { stdout } = await execa(
+									'tsc',
+									['-p', file],
+									{
+										preferLocal: true
+									}
+								);
+								try {
+									await cpy('types', `${prefix}/types`);
+								} catch (error) {}
+								console.log(stdout);
+							} finally {
+								await fs.unlink(file);
+							}
+						}
+					}
+				};
+			})(),
 			(() => {
 				return {
 					name: 'package-type',

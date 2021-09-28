@@ -1,9 +1,14 @@
+/* globals unknown */
+
+/**
+ * @param {unknown[]} arguments_
+ */
 const api = function (...arguments_) {
-	if (!arguments_.length) {
+	if (arguments_.length === 0) {
 		return;
 	}
 	const callback = arguments_[arguments_.length - 1];
-	if (callback && typeof callback === 'function') {
+	if (typeof callback === 'function') {
 		callback(null, '0.0.0.0');
 	}
 };

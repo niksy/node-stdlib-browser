@@ -1,14 +1,24 @@
+/* globals unknown */
+
 import path from 'path';
 
 function noop() {}
+/**
+ * @param {unknown[]} arguments_
+ */
 function nextTick(...arguments_) {
 	const [function_] = arguments_;
 	arguments_.shift();
 	setTimeout(function () {
-		function_.apply(null, arguments_);
+		if (typeof function_ === 'function') {
+			function_.apply(null, arguments_);
+		}
 	}, 0);
 }
 
+/**
+ * @param {unknown} name
+ */
 function binding(name) {
 	throw new Error('No such module. (Possibly not yet loaded)');
 }
@@ -18,12 +28,16 @@ const platformName = 'browser';
 const pid = 1;
 const browser = true;
 const environment = {};
+/** @type {string[]} */
 const argv = [];
 
 let cwd = '/';
 function getCwd() {
 	return cwd;
 }
+/**
+ * @param {string} dir
+ */
 function getChdir(dir) {
 	cwd = path.resolve(dir, cwd);
 }

@@ -12,9 +12,11 @@ const consoleApi = {
 	timeEnd: 1
 };
 
+/** @typedef {keyof consoleApi} ConsoleApi */
+
 for (const property in consoleApi) {
-	if (!_console[property]) {
-		_console[property] = function () {};
+	if (!_console[/** @type {ConsoleApi} */ (property)]) {
+		_console[/** @type {ConsoleApi} */ (property)] = function () {};
 	}
 }
 

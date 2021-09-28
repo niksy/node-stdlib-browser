@@ -5,6 +5,8 @@ import path from 'path';
 import api from '../index';
 import url from '../proxy/url';
 
+/** @typedef {import('../index').PackageNames} PackageNames */
+
 const context = path.resolve(__dirname, '../');
 
 const packages = {
@@ -57,8 +59,10 @@ describe('Exports', function () {
 					? path.resolve(context, packagePath)
 					: packagePath;
 			assert.ok(
-				api[packageName] === resolvedPath,
-				`Package path not valid for "${packageName}", got "${api[packageName]}"`
+				api[/** @type PackageNames */ (packageName)] === resolvedPath,
+				`Package path not valid for "${packageName}", got "${
+					api[/** @type PackageNames */ (packageName)]
+				}"`
 			);
 		});
 	});
@@ -70,9 +74,9 @@ describe('Exports', function () {
 					? path.resolve(context, packagePath)
 					: packagePath;
 			assert.ok(
-				api[packageName] === resolvedPath,
+				api[/** @type PackageNames */ (packageName)] === resolvedPath,
 				`Package path not valid for "node:${packageName}", got "${
-					api[`node:${packageName}`]
+					api[`node:${/** @type PackageNames */ (packageName)}`]
 				}"`
 			);
 		});
@@ -171,10 +175,11 @@ describe('`url` additional exports', function () {
 		}
 	});
 
-	it('url.fileToURLPath', function () {
+	it('url.fileURLToPath', function () {
 		assert.throws(() => url.fileURLToPath('https://a/b/c'), /TypeError/);
 		{
 			const withHost = new URL('file://host/a');
+			// @ts-ignore
 			assert.throws(() => url.fileURLToPath(withHost), /TypeError/);
 		}
 		assert.throws(() => url.fileURLToPath('file:///a%2F/'), /TypeError/);

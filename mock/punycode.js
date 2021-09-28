@@ -1,3 +1,6 @@
+/**
+ * @param {string} s
+ */
 function passthrough(s) {
 	return s;
 }

@@ -2,6 +2,7 @@
 	"root": true,
 	"extends": [
 		"eslint-config-niksy",
+		"eslint-config-niksy/typescript",
 		"eslint-config-niksy/next",
 		"eslint-config-prettier"
 	],

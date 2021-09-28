@@ -1,12 +1,15 @@
 import createRequire from 'create-require';
 import pkgDir from 'pkg-dir';
 
-const resolvePath = (path, options = {}) => {
+/**
+ * @param {string} path
+ */
+const resolvePath = (path) => {
 	const resolvedPath = (
 		globalThis.require ?? createRequire(import.meta.url)
 	).resolve(path);
 	if (!path.includes('./')) {
-		const directory = pkgDir.sync(resolvedPath);
+		const directory = pkgDir.sync(resolvedPath) ?? '';
 		return directory;
 	}
 	return resolvedPath;
@@ -94,9 +97,15 @@ const packages = {
 	zlib
 };
 
-const packagesWithNodeProtocol = {};
+/** @typedef {typeof packages} Packages */
+/** @typedef {keyof Packages} PackageNames */
+/** @typedef {{ [Property in PackageNames as `node:${Property}`]: Packages[Property] }} NodeProtocolPackages */
+
+const packagesWithNodeProtocol = /** @type NodeProtocolPackages */ ({});
 for (const [packageName, packagePath] of Object.entries(packages)) {
-	packagesWithNodeProtocol[`node:${packageName}`] = packagePath;
+	packagesWithNodeProtocol[
+		`node:${/** @type PackageNames */ (packageName)}`
+	] = /** @type PackageNames */ packagePath;
 }
 
 export default {
