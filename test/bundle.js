@@ -7,7 +7,7 @@ import execa from 'execa';
 const _describe = process.version.includes('v10') ? describe.skip : describe;
 
 _describe('Bundling', function () {
-	this.timeout(30000);
+	this.timeout(60000 * 2);
 
 	const cwd = path.resolve(__dirname, '../example');
 
