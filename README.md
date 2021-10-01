@@ -154,7 +154,7 @@ module.exports = {
 | `dns`                 |                                                                                   | [dns](mock/dns.js)         |
 | `domain`              | [domain-browser](https://github.com/bevry/domain-browser)                         |                            |
 | `events`              | [events](https://github.com/browserify/events)                                    |                            |
-| `fs`                  |                                                                                   |                            |
+| `fs`                  |                                                                                   |                            | [Mocking `fs`](#mocking-fs)                          |
 | `http`                | [stream-http](https://github.com/jhiesey/stream-http)                             |                            |
 | `https`               | [https-browserify](https://github.com/substack/https-browserify)                  |                            |
 | `module`              |                                                                                   |                            |
@@ -195,6 +195,21 @@ module with default export `null`.
 
 Some modules have mocks in the mock directory. These are replacements with
 minimal functionality.
+
+## Tips
+
+### Mocking `fs`
+
+`fs` package doesn’t return anything since there are many different ways you can
+implement file system functionality in browser.
+
+Examples of implementations:
+
+-   [`BrowserFS`](https://github.com/jvilk/BrowserFS)
+-   [`fs-web`](https://github.com/matthewp/fs)
+-   [`browserify-fs`](https://github.com/mafintosh/browserify-fs)
+-   [`mock-fs`](https://github.com/tschaub/mock-fs)
+-   [`memfs`](https://github.com/streamich/memfs)
 
 ## Node support
 
