@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "postinstall": "npm run build",
     "build": "cd .. && npm run build",
     "build:webpack:cjs": "webpack --config ./cjs/webpack.config.js",
     "build:webpack:esm": "webpack --config ./esm/webpack.config.mjs",

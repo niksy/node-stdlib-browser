@@ -3,7 +3,7 @@
 This directory servers as minimal reproducible configuration for Webpack and
 Rollup.
 
-Run `npm install`, and then:
+Run `npm install && npm run build`, and then:
 
 -   `npm run build:webpack:cjs` - Run Webpack config as CommonJS module
 -   `npm run build:rollup:cjs` - Run Rollup config as CommonJS module
