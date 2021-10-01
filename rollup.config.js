@@ -3,6 +3,7 @@
 const path = require('path');
 const { promises: fs } = require('fs');
 const { default: babel } = require('@rollup/plugin-babel');
+const commonjs = require('@rollup/plugin-commonjs');
 const execa = require('execa');
 const cpy = require('cpy');
 
@@ -25,6 +26,17 @@ function getConfig(filename, options = {}) {
 			}
 		],
 		plugins: [
+			(() => {
+				return {
+					name: 'process-browser-handling',
+					resolveId(source) {
+						if (source === 'process/browser.js') {
+							return require.resolve('process/browser.js');
+						}
+						return null;
+					}
+				};
+			})(),
 			(() => {
 				return {
 					name: 'types',
@@ -102,6 +114,7 @@ function getConfig(filename, options = {}) {
 					}
 				};
 			})(),
+			commonjs(),
 			babel({
 				babelHelpers: 'bundled',
 				exclude: 'node_modules/**'
@@ -121,6 +134,7 @@ module.exports = [
 	'mock/punycode.js',
 	'mock/tls.js',
 	'mock/tty.js',
+	'proxy/process.js',
 	[
 		'proxy/url.js',
 		{ cjsOutro: 'exports = module.exports = api;', cjsExports: 'named' }

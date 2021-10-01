@@ -33,7 +33,7 @@ const packages = {
 	net: 'mock/empty.js',
 	os: 'node_modules/os-browserify',
 	path: 'node_modules/path-browserify',
-	process: 'node_modules/process',
+	process: 'proxy/process.js',
 	punycode: 'node_modules/punycode',
 	querystring: 'proxy/querystring.js',
 	readline: 'mock/empty.js',

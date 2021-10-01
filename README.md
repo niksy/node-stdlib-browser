@@ -141,10 +141,10 @@ module.exports = {
 
 ## Package contents
 
-| Module                | Browser implementation                                                            | Mock implementation        | Notes                                                |
-| --------------------- | --------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------- |
+| Module                | Browser implementation                                                            | Mock implementation        | Notes                                                                             |
+| --------------------- | --------------------------------------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------- |
 | `assert`              | [assert](https://github.com/browserify/commonjs-assert)                           |                            |
-| `buffer`              | [buffer](https://github.com/feross/buffer)                                        | [buffer](mock/buffer.js)   | `buffer@5` for IE 11 support                         |
+| `buffer`              | [buffer](https://github.com/feross/buffer)                                        | [buffer](mock/buffer.js)   | `buffer@5` for IE 11 support                                                      |
 | `child_process`       |                                                                                   |                            |
 | `cluster`             |                                                                                   |                            |
 | `console`             | [console-browserify](https://github.com/browserify/console-browserify)            | [console](mock/console.js) |
@@ -161,8 +161,8 @@ module.exports = {
 | `net`                 |                                                                                   | [net](mock/net.js)         |
 | `os`                  | [os-browserify](https://github.com/CoderPuppy/os-browserify)                      |                            |
 | `path`                | [path-browserify](https://github.com/browserify/path-browserify)                  |                            |
-| `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) |
-| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            | `punycode@1` for browser support                     |
+| `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) | `process.nextTick` uses [`immediate`](https://github.com/calvinmetcalf/immediate) |
+| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            | `punycode@1` for browser support                                                  |
 | `querystring`         | [native-querystring](https://github.com/niksy/native-querystring)                 |                            |
 | `readline`            |                                                                                   |                            |
 | `repl`                |                                                                                   |                            |
@@ -173,7 +173,7 @@ module.exports = {
 | `timers/promises`     | [isomorphic-timers-promises](https://github.com/niksy/isomorphic-timers-promises) |                            |
 | `tls`                 |                                                                                   | [tls](mock/tls.js)         |
 | `tty`                 | [tty-browserify](https://github.com/browserify/tty-browserify)                    | [tty](mock/tty.js)         |
-| `url`                 | [native-url](https://github.com/GoogleChromeLabs/native-url)                      |                            | Contains additional exports from newer Node versions |
+| `url`                 | [native-url](https://github.com/GoogleChromeLabs/native-url)                      |                            | Contains additional exports from newer Node versions                              |
 | `util`                | [util](https://github.com/browserify/node-util)                                   |                            |
 | `vm`                  | [vm-browserify](https://github.com/browserify/vm-browserify)                      |                            |
 | `zlib`                | [browserify-zlib](https://github.com/browserify/browserify-zlib)                  |                            |
