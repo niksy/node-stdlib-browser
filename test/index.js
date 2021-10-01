@@ -2,6 +2,7 @@
 
 import assert from 'assert';
 import path from 'path';
+import execa from 'execa';
 import api from '../index';
 import url from '../proxy/url';
 

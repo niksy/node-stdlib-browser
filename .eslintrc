@@ -27,9 +27,14 @@
 			"parserOptions": {
 				"sourceType": "script"
 			},
+			"rules": {
+				"no-console": 0
+			}
+		},
+		{
+			"files": ["rollup.config.js", "test/bundle.js"],
 			"plugins": ["eslint-plugin-unicorn"],
 			"rules": {
-				"no-console": 0,
 				"unicorn/numeric-separators-style": 0
 			}
 		}
