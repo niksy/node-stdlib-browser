@@ -14,6 +14,8 @@ Features:
     [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
     allows for builtin modules to be referenced by valid absolute URL strings
 
+Check [example](/example) to see how modules work in browser environment
+
 ## Install
 
 ```sh
