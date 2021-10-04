@@ -3,6 +3,7 @@
 const path = require('path');
 const { promises: fs } = require('fs');
 const { default: babel } = require('@rollup/plugin-babel');
+const commonjs = require('@rollup/plugin-commonjs');
 const execa = require('execa');
 const cpy = require('cpy');
 
@@ -25,6 +26,17 @@ function getConfig(filename, options = {}) {
 			}
 		],
 		plugins: [
+			(() => {
+				return {
+					name: 'resolve-id',
+					async resolveId(source) {
+						if (source === 'url') {
+							return require.resolve('url/');
+						}
+						return null;
+					}
+				};
+			})(),
 			(() => {
 				return {
 					name: 'types',
@@ -102,6 +114,7 @@ function getConfig(filename, options = {}) {
 					}
 				};
 			})(),
+			commonjs(),
 			babel({
 				babelHelpers: 'bundled',
 				exclude: 'node_modules/**'

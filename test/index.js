@@ -5,6 +5,7 @@ import path from 'path';
 import execa from 'execa';
 import api from '../index';
 import url from '../proxy/url';
+import qs from '../proxy/querystring';
 
 /** @typedef {import('../index').PackageNames} PackageNames */
 
@@ -218,5 +219,113 @@ describe('`url` additional exports', function () {
 				assert.strictEqual(fromURL, path);
 			}
 		}
+	});
+});
+
+describe('`querystring` additional exports', function () {
+	describe('escape', function () {
+		it('does basic escaping', function () {
+			// @ts-ignore
+			assert.deepEqual(qs.escape(5), '5');
+			assert.deepEqual(qs.escape('test'), 'test');
+			// @ts-ignore
+			assert.deepEqual(qs.escape({}), '%5Bobject%20Object%5D');
+			// @ts-ignore
+			assert.deepEqual(qs.escape([5, 10]), '5%2C10');
+			assert.deepEqual(qs.escape('Ŋōđĕ'), '%C5%8A%C5%8D%C4%91%C4%95');
+			assert.deepEqual(
+				qs.escape('testŊōđĕ'),
+				'test%C5%8A%C5%8D%C4%91%C4%95'
+			);
+			assert.deepEqual(qs.escape('�test'), '%EF%BF%BDtest');
+		});
+
+		it('using toString for objects', function () {
+			assert.strictEqual(
+				// @ts-ignore
+				qs.escape({
+					test: 5,
+					toString: () => 'test',
+					valueOf: () => 10
+				}),
+				'test'
+			);
+		});
+
+		it('toString is not callable, must throw an error', function () {
+			// @ts-ignore
+			assert.throws(() => qs.escape({ toString: 5 }));
+		});
+
+		it('should use valueOf instead of non-callable toString', function () {
+			assert.strictEqual(
+				// @ts-ignore
+				qs.escape({ toString: 5, valueOf: () => 'test' }),
+				'test'
+			);
+		});
+
+		it('throws when given Symbol', function () {
+			try {
+				// @ts-ignore
+				qs.escape(Symbol('test'));
+			} catch (error) {
+				if (
+					error instanceof TypeError &&
+					/[Ss]ymbol.+string/.test(error.message)
+				) {
+					assert.ok(true);
+				} else {
+					throw error;
+				}
+			}
+		});
+	});
+
+	describe('unescape', function () {
+		it('does basic unescaping', function () {
+			assert.deepEqual(qs.unescape('5'), '5');
+			assert.deepEqual(qs.unescape('test'), 'test');
+			assert.deepEqual(
+				qs.unescape('%5Bobject%20Object%5D'),
+				'[object Object]'
+			);
+			assert.deepEqual(qs.unescape('5%2C10'), '5,10');
+			assert.deepEqual(qs.unescape('%C5%8A%C5%8D%C4%91%C4%95'), 'Ŋōđĕ');
+			assert.deepEqual(
+				qs.unescape('test%C5%8A%C5%8D%C4%91%C4%95'),
+				'testŊōđĕ'
+			);
+			assert.deepEqual(qs.unescape('%EF%BF%BDtest'), '�test');
+		});
+
+		it('using JSON objects', function () {
+			assert.strictEqual(
+				qs.unescape(
+					JSON.stringify({
+						test: 5,
+						toString: () => 'test',
+						valueOf: () => 10
+					})
+				),
+				'{"test":5}'
+			);
+		});
+
+		it('throws when given Symbol', function () {
+			try {
+				// @ts-ignore
+				qs.unescape(Symbol('test'));
+			} catch (error) {
+				if (
+					error instanceof TypeError &&
+					/[Ss]ymbol.+string/.test(error.message)
+				) {
+					assert.ok(true);
+				} else {
+					throw error;
+				}
+			}
+		});
 	});
 });

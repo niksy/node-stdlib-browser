@@ -14,11 +14,12 @@
  */
 
 // @ts-ignore
-import { format, parse, resolve, resolveObject, Url } from 'native-url';
+import { format, parse, resolve, resolveObject, Url } from 'url';
 
 const formatImport = /** @type {formatImport}*/ (format);
 const parseImport = /** @type {parseImport}*/ (parse);
 const resolveImport = /** @type {resolveImport}*/ (resolve);
+// @ts-ignore
 const UrlImport = /** @type {UrlImport}*/ (Url);
 
 const URL = globalThis.URL;
@@ -128,7 +129,7 @@ const pathToFileURL =
 
 const fileURLToPath =
 	/**
-	 * @type {fileURLToPath}
+	 * @type {fileURLToPath & ((path: string | URL) => string)}
 	 */
 	function (path) {
 		if (!isURLInstance(path) && typeof path !== 'string') {
