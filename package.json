@@ -38,7 +38,7 @@
     "postpublish": "GITHUB_TOKEN=$GITHUB_RELEASE_TOKEN github-release-from-changelog",
     "prerelease": "npm run lint && npm run lint:types && npm run build && npm run module-check",
     "release": "np --no-release-draft",
-    "test": "BABEL_ENV=test nyc mocha --require @babel/register --require esm 'test/index.js' && nyc check-coverage && mocha --require esm 'test/bundle.js'",
+    "test": "BABEL_ENV=test nyc mocha --require @babel/register --require esm 'test/**/*.js' && nyc check-coverage",
     "test:watch": "nodemon --exec npm test",
     "version": "if [ $(git rev-parse --abbrev-ref HEAD) == 'master' ]; then version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md; else echo; fi"
   },
@@ -103,6 +103,7 @@
     "nodemon": "^2.0.6",
     "np": "^6.5.0",
     "nyc": "^15.1.0",
+    "parse-node-version": "^1.0.1",
     "prettier": "^2.4.0",
     "rollup": "^2.32.1",
     "typescript": "^4.3.5",

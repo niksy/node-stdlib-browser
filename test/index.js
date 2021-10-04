@@ -3,6 +3,8 @@
 import assert from 'assert';
 import path from 'path';
 import execa from 'execa';
+// @ts-ignore
+import parseNodeVersion from 'parse-node-version';
 import api from '../index';
 import url from '../proxy/url';
 import qs from '../proxy/querystring';
@@ -327,5 +329,46 @@ describe('`querystring` additional exports', function () {
 				}
 			}
 		});
+	});
+});
+
+const nodeVersion = parseNodeVersion(process.version);
+const shouldBundle = nodeVersion.major >= 12;
+const shouldBundleESM = nodeVersion.major >= 16;
+
+describe('Bundling', function () {
+	this.timeout(60000 * 2);
+
+	const cwd = path.resolve(__dirname, '../example');
+
+	before(async function () {
+		if (shouldBundle) {
+			await execa('npm', ['install'], { cwd });
+			await execa('npm', ['run', 'build'], { cwd });
+		}
+	});
+
+	it('bundles for Webpack', async function () {
+		const bundles = [];
+		if (shouldBundle) {
+			bundles.push(execa('npm', ['run', 'build:webpack:cjs'], { cwd }));
+		}
+		if (shouldBundleESM) {
+			// Bundles.push(execa('npm', ['run', 'build:webpack:esm'], { cwd }));
+		}
+		await Promise.all(bundles);
+		assert.ok(true);
+	});
+
+	it('bundles for Rollup', async function () {
+		const bundles = [];
+		if (shouldBundle) {
+			bundles.push(execa('npm', ['run', 'build:rollup:cjs'], { cwd }));
+		}
+		if (shouldBundleESM) {
+			// Bundles.push(execa('npm', ['run', 'build:rollup:esm'], { cwd }));
+		}
+		await Promise.all(bundles);
+		assert.ok(true);
 	});
 });

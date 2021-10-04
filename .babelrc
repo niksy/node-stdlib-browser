@@ -11,7 +11,7 @@
 	"plugins": ["babel-plugin-transform-globalthis"],
 	"overrides": [
 		{
-			"test": "./index.js",
+			"test": ["./index.js", "./test/index.js"],
 			"presets": [
 				[
 					"@babel/preset-env",

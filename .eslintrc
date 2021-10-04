@@ -32,7 +32,7 @@
 			}
 		},
 		{
-			"files": ["rollup.config.js", "test/bundle.js"],
+			"files": ["rollup.config.js", "test/index.js"],
 			"plugins": ["eslint-plugin-unicorn"],
 			"rules": {
 				"unicorn/numeric-separators-style": 0
