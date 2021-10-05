@@ -3,7 +3,6 @@
  * @typedef {import('querystring').unescape} qsUnescape
  */
 
-// @ts-ignore
 import { decode, encode, parse, stringify } from 'querystring-es3';
 
 /**

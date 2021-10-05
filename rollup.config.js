@@ -6,6 +6,7 @@ const { default: babel } = require('@rollup/plugin-babel');
 const commonjs = require('@rollup/plugin-commonjs');
 const execa = require('execa');
 const cpy = require('cpy');
+const del = require('del');
 
 function getConfig(filename, options = {}) {
 	const { cjsOutro = '', cjsExports = 'auto' } = options;
@@ -50,7 +51,7 @@ function getConfig(filename, options = {}) {
 						if (typeof prefix !== 'undefined') {
 							const tsconfig = {
 								extends: './tsconfig',
-								exclude: ['test/**/*.js'],
+								exclude: ['test/**/*.js', 'types/**/*-test*'],
 								compilerOptions: {
 									declaration: true,
 									declarationMap: true,
@@ -62,6 +63,12 @@ function getConfig(filename, options = {}) {
 							};
 							const file = `.${prefix}.tsconfig.json`;
 							try {
+								try {
+									await cpy('types/**/*.d.ts', 'types', {
+										rename: (basename) =>
+											basename.replace('.d.ts', '.ts')
+									});
+								} catch (error) {}
 								await fs.writeFile(
 									file,
 									JSON.stringify(tsconfig),
@@ -75,7 +82,10 @@ function getConfig(filename, options = {}) {
 									}
 								);
 								try {
-									await cpy('types', `${prefix}/types`);
+									await del([
+										'types/**/*.ts',
+										'!types/**/*.d.ts'
+									]);
 								} catch (error) {}
 								console.log(stdout);
 							} finally {

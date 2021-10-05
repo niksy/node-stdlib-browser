@@ -3,7 +3,6 @@
 import assert from 'assert';
 import path from 'path';
 import execa from 'execa';
-// @ts-ignore
 import parseNodeVersion from 'parse-node-version';
 import api from '../index';
 import url from '../proxy/url';

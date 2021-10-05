@@ -84,6 +84,7 @@
     "changelog-verify": "^1.1.2",
     "core-js": "^2.6.5",
     "cpy": "^8.1.2",
+    "del": "^6.0.0",
     "eslint": "^7.31.0",
     "eslint-config-niksy": "^10.0.0",
     "eslint-config-prettier": "^8.3.0",
