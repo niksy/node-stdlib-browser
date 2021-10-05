@@ -45,7 +45,7 @@ module.exports = {
 	plugins: [
 		new webpack.ProvidePlugin({
 			process: stdBrowser.process,
-			Buffer: stdBrowser.buffer
+			Buffer: [stdBrowser.buffer, 'Buffer']
 		})
 	]
 };
@@ -226,6 +226,10 @@ use CommonJS implementation.
 
 Minimum supported version should be Internet Explorer 11, but most modules
 support even Internet Explorer 9.
+
+## Types
+
+You can use default `@types/node` types.
 
 ## License
 
