@@ -1,4 +1,4 @@
-# node-std-browser
+# node-stdlib-browser
 
 [![Build Status][ci-img]][ci]
 
@@ -9,17 +9,17 @@ Features:
 -   Based on [`node-libs-browser`](https://github.com/webpack/node-libs-browser)
     for Webpack
 -   Maintained with newer versions and modern implementations
--   Works with Webpack and Rollup
+-   Works with Webpack and Rollup, but should also work with other bundlers
 -   Exports implementation with
     [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
     allows for builtin modules to be referenced by valid absolute URL strings
 
-Check [example](/example) to see how modules work in browser environment
+Check [example](/example) to see how modules work in browser environment.
 
 ## Install
 
 ```sh
-npm install node-std-browser --save-dev
+npm install node-stdlib-browser --save-dev
 ```
 
 ## Usage
@@ -34,18 +34,18 @@ As of Webpack 5, aliases and globals provider need to be explicitly configured.
 
 ```js
 // webpack.config.js
-const stdBrowser = require('node-std-browser');
+const stdLibBrowser = require('node-stdlib-browser');
 const webpack = require('webpack');
 
 module.exports = {
 	// ...
 	resolve: {
-		alias: stdBrowser
+		alias: stdLibBrowser
 	},
 	plugins: [
 		new webpack.ProvidePlugin({
-			process: stdBrowser.process,
-			Buffer: [stdBrowser.buffer, 'Buffer']
+			process: stdLibBrowser.process,
+			Buffer: [stdLibBrowser.buffer, 'Buffer']
 		})
 	]
 };
@@ -98,7 +98,7 @@ that. You can
 
 ```js
 // rollup.config.js
-const stdBrowser = require('node-std-browser');
+const stdLibBrowser = require('node-stdlib-browser');
 const globals = require('rollup-plugin-node-globals');
 const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
@@ -109,7 +109,7 @@ module.exports = {
 	// ...
 	plugins: [
 		alias({
-			entries: stdBrowser
+			entries: stdLibBrowser
 		}),
 		resolve({
 			browser: true
@@ -237,7 +237,7 @@ MIT © [Ivan Nikolić](http://ivannikolic.com)
 
 <!-- prettier-ignore-start -->
 
-[ci]: https://github.com/niksy/node-std-browser/actions?query=workflow%3ACI
-[ci-img]: https://github.com/niksy/node-std-browser/workflows/CI/badge.svg?branch=master
+[ci]: https://github.com/niksy/node-stdlib-browser/actions?query=workflow%3ACI
+[ci-img]: https://github.com/niksy/node-stdlib-browser/workflows/CI/badge.svg?branch=master
 
 <!-- prettier-ignore-end -->

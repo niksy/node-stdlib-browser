@@ -1,24 +1,24 @@
 import path from 'path';
 import { fileURLToPath } from 'url'
 import webpack from 'webpack';
-import stdBrowser from '../../esm/index.js';
+import stdLibBrowser from '../../esm/index.js';
 
 export default {
 	mode: 'none',
 	entry: './esm/index.mjs',
 	output: {
-		library: 'stdBrowser',
+		library: 'stdLibBrowser',
 		libraryTarget: 'umd',
 		filename: 'webpack.dist.js',
 		path: path.dirname(fileURLToPath(import.meta.url))
 	},
 	resolve: {
-		alias: stdBrowser
+		alias: stdLibBrowser
 	},
 	plugins: [
 		new webpack.ProvidePlugin({
-			process: stdBrowser.process,
-			Buffer: stdBrowser.buffer
+			process: stdLibBrowser.process,
+			Buffer: stdLibBrowser.buffer
 		})
 	]
 };

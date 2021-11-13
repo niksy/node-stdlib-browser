@@ -19,4 +19,4 @@ Run `npm install && npm run build`, and then:
     configuration
 
 In each opened HTML file you can see each module output inside browser console.
-Each module is accessible from `stdBrowser` global property.
+Each module is accessible from `stdLibBrowser` global property.

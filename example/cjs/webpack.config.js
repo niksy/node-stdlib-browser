@@ -1,23 +1,23 @@
 const path = require('path');
 const webpack = require('webpack');
-const stdBrowser = require('../../cjs/index.js');
+const stdLibraryBrowser = require('../../cjs/index.js');
 
 module.exports = {
 	mode: 'none',
 	entry: './cjs/index.js',
 	output: {
-		library: 'stdBrowser',
+		library: 'stdLibBrowser',
 		libraryTarget: 'umd',
 		filename: 'webpack.dist.js',
 		path: __dirname
 	},
 	resolve: {
-		alias: stdBrowser
+		alias: stdLibraryBrowser
 	},
 	plugins: [
 		new webpack.ProvidePlugin({
-			process: stdBrowser.process,
-			Buffer: stdBrowser.buffer
+			process: stdLibraryBrowser.process,
+			Buffer: stdLibraryBrowser.buffer
 		})
 	]
 };

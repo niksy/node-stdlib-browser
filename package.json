@@ -1,5 +1,5 @@
 {
-  "name": "node-std-browser",
+  "name": "node-stdlib-browser",
   "version": "0.0.0",
   "description": "Node standard library for browser.",
   "license": "MIT",
@@ -33,7 +33,7 @@
     "build": "rollup --config rollup.config.js",
     "lint": "eslint '{index,lib/**/*,test/**/*}.js'",
     "lint:types": "tsc",
-    "module-check": "node -e 'require(\"node-std-browser\");' && node --input-type=module -e 'import \"node-std-browser\";'",
+    "module-check": "node -e 'require(\"node-stdlib-browser\");' && node --input-type=module -e 'import \"node-stdlib-browser\";'",
     "prepublishOnly": "npm run build",
     "postpublish": "GITHUB_TOKEN=$GITHUB_RELEASE_TOKEN github-release-from-changelog",
     "prerelease": "npm run lint && npm run lint:types && npm run build && npm run module-check",
@@ -122,10 +122,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/niksy/node-std-browser.git"
+    "url": "git+https://github.com/niksy/node-stdlib-browser.git"
   },
   "bugs": {
-    "url": "https://github.com/niksy/node-std-browser/issues"
+    "url": "https://github.com/niksy/node-stdlib-browser/issues"
   },
-  "homepage": "https://github.com/niksy/node-std-browser#readme"
+  "homepage": "https://github.com/niksy/node-stdlib-browser#readme"
 }

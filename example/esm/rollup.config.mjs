@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import alias from '@rollup/plugin-alias';
-import stdBrowser from '../../esm/index.js';
+import stdLibBrowser from '../../esm/index.js';
 
 export default {
 	input: './esm/index.mjs',
@@ -11,14 +11,14 @@ export default {
 		{
 			file: 'esm/rollup.dist.js',
 			format: 'umd',
-			name: 'stdBrowser',
+			name: 'stdLibBrowser',
 			exports: 'auto',
 			sourcemap: 'inline'
 		}
 	],
 	plugins: [
 		alias({
-			entries: stdBrowser
+			entries: stdLibBrowser
 		}),
 		resolve({
 			browser: true

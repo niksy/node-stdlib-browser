@@ -5,7 +5,7 @@ const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const json = require('@rollup/plugin-json');
 const alias = require('@rollup/plugin-alias');
-const stdBrowser = require('../../cjs/index.js');
+const stdLibraryBrowser = require('../../cjs/index.js');
 
 module.exports = {
 	input: './cjs/index.js',
@@ -13,14 +13,14 @@ module.exports = {
 		{
 			file: 'cjs/rollup.dist.js',
 			format: 'umd',
-			name: 'stdBrowser',
+			name: 'stdLibBrowser',
 			exports: 'auto',
 			sourcemap: 'inline'
 		}
 	],
 	plugins: [
 		alias({
-			entries: stdBrowser
+			entries: stdLibraryBrowser
 		}),
 		resolve({
 			browser: true
