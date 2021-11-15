@@ -1,8 +1,8 @@
-import globals from 'rollup-plugin-node-globals';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import alias from '@rollup/plugin-alias';
+import inject from '@rollup/plugin-inject';
 import stdLibBrowser from '../../esm/index.js';
 
 export default {
@@ -25,7 +25,10 @@ export default {
 		}),
 		commonjs(),
 		json(),
-		globals()
+		inject({
+			process: stdLibBrowser.process,
+			Buffer: [stdLibBrowser.buffer, 'Buffer']
+		}),
 	],
 	onwarn: (warning, rollupWarn) => {
 		const packagesWithCircularDependencies = [

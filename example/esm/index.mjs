@@ -77,6 +77,8 @@ console.log('url', url);
 console.log('util', util);
 console.log('vm', vm);
 console.log('zlib', zlib);
+console.log('global Buffer', Buffer);
+console.log('global process', process);
 
 export default {
 	assert,
@@ -117,5 +119,7 @@ export default {
 	url,
 	util,
 	vm,
-	zlib
+	zlib,
+	__Buffer: Buffer,
+	__process: process
 };

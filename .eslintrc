@@ -13,7 +13,15 @@
 	"rules": {
 		"prettier/prettier": 1,
 		"camelcase": 0,
-		"unicorn/prefer-flat-map": 0
+		"unicorn/prefer-flat-map": 0,
+		"unicorn/prevent-abbreviations": [
+			1,
+			{
+				"allowList": {
+					"stdLibBrowser": true
+				}
+			}
+		]
 	},
 	"overrides": [
 		{

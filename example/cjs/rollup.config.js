@@ -1,11 +1,11 @@
 'use strict';
 
-const globals = require('rollup-plugin-node-globals');
 const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const json = require('@rollup/plugin-json');
 const alias = require('@rollup/plugin-alias');
-const stdLibraryBrowser = require('../../cjs/index.js');
+const inject = require('@rollup/plugin-inject');
+const stdLibBrowser = require('../../cjs/index.js');
 
 module.exports = {
 	input: './cjs/index.js',
@@ -20,14 +20,17 @@ module.exports = {
 	],
 	plugins: [
 		alias({
-			entries: stdLibraryBrowser
+			entries: stdLibBrowser
 		}),
 		resolve({
 			browser: true
 		}),
 		commonjs(),
 		json(),
-		globals()
+		inject({
+			process: stdLibBrowser.process,
+			Buffer: [stdLibBrowser.buffer, 'Buffer']
+		})
 	],
 	onwarn: (warning, rollupWarn) => {
 		const packagesWithCircularDependencies = [

@@ -62,8 +62,7 @@ module.exports = {
 Since many packages expose only CommonJS implementation, you need to apply
 plugins to handle CommonJS exports. Those packages could have dependencies
 installed with npm so they need to be properly resolved (taking into account
-browser-specific implementations). Additionally, it’s recommended to handle Node
-globals automatically.
+browser-specific implementations).
 
 Some dependencies can have circular dependencies and Rollup will warn you about
 that. You can
@@ -72,11 +71,11 @@ that. You can
 ```js
 // rollup.config.js
 const stdLibBrowser = require('node-stdlib-browser');
-const globals = require('rollup-plugin-node-globals');
 const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const json = require('@rollup/plugin-json');
 const alias = require('@rollup/plugin-alias');
+const inject = require('@rollup/plugin-inject');
 
 module.exports = {
 	// ...
@@ -89,7 +88,10 @@ module.exports = {
 		}),
 		commonjs(),
 		json(),
-		globals()
+		inject({
+			process: stdLibBrowser.process,
+			Buffer: [stdLibBrowser.buffer, 'Buffer']
+		})
 	],
 	onwarn: (warning, rollupWarn) => {
 		const packagesWithCircularDependencies = [

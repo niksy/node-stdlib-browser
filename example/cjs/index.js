@@ -77,6 +77,8 @@ console.log('url', url);
 console.log('util', util);
 console.log('vm', vm);
 console.log('zlib', zlib);
+console.log('global Buffer', Buffer);
+console.log('global process', process);
 
 module.exports = {
 	assert,
@@ -117,5 +119,7 @@ module.exports = {
 	url,
 	util,
 	vm,
-	zlib
+	zlib,
+	__Buffer: Buffer,
+	__process: process
 };
