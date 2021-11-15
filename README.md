@@ -51,33 +51,6 @@ module.exports = {
 };
 ```
 
-Some packages such as `native-url` expose ESM file through `.mjs` extension.
-Additional Webpack configuration could be needed to properly handle those
-packages.
-
-For example, to make `native-url` use ESM version of `native-querystring`, apply
-following configuration:
-
-```js
-// webpack.config.js
-
-module.exports = {
-	// ...
-	module: {
-		rules: [
-			{
-				type: 'javascript/auto',
-				test: /\.mjs$/,
-				include: /\/native-url\//,
-				resolve: {
-					mainFields: ['module']
-				}
-			}
-		];
-	}
-}
-```
-
 </details>
 
 ### Rollup
