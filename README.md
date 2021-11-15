@@ -116,10 +116,10 @@ module.exports = {
 
 ## Package contents
 
-| Module                | Browser implementation                                                            | Mock implementation        | Notes                                                |
-| --------------------- | --------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------- |
+| Module                | Browser implementation                                                            | Mock implementation        | Notes                                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `assert`              | [assert](https://github.com/browserify/commonjs-assert)                           |                            |
-| `buffer`              | [buffer](https://github.com/feross/buffer)                                        | [buffer](mock/buffer.js)   | `buffer@5` for IE 11 support                         |
+| `buffer`              | [buffer](https://github.com/feross/buffer)                                        | [buffer](mock/buffer.js)   | `buffer@5` for IE 11 support                                                                          |
 | `child_process`       |                                                                                   |                            |
 | `cluster`             |                                                                                   |                            |
 | `console`             | [console-browserify](https://github.com/browserify/console-browserify)            | [console](mock/console.js) |
@@ -129,7 +129,7 @@ module.exports = {
 | `dns`                 |                                                                                   | [dns](mock/dns.js)         |
 | `domain`              | [domain-browser](https://github.com/bevry/domain-browser)                         |                            |
 | `events`              | [events](https://github.com/browserify/events)                                    |                            |
-| `fs`                  |                                                                                   |                            | [Mocking `fs`](#mocking-fs)                          |
+| `fs`                  |                                                                                   |                            | [Mocking `fs`](#mocking-fs)                                                                           |
 | `http`                | [stream-http](https://github.com/jhiesey/stream-http)                             |                            |
 | `https`               | [https-browserify](https://github.com/substack/https-browserify)                  |                            |
 | `module`              |                                                                                   |                            |
@@ -137,8 +137,8 @@ module.exports = {
 | `os`                  | [os-browserify](https://github.com/CoderPuppy/os-browserify)                      |                            |
 | `path`                | [path-browserify](https://github.com/browserify/path-browserify)                  |                            |
 | `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) |
-| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            | `punycode@1` for browser support                     |
-| `querystring`         | [querystring-es3](https://github.com/mike-spainhower/querystring)                 |                            | Contains additional exports from newer Node versions |
+| `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            | `punycode@1` for browser support                                                                      |
+| `querystring`         | [querystring-es3](https://github.com/mike-spainhower/querystring)                 |                            | Contains additional exports from newer Node versions                                                  |
 | `readline`            |                                                                                   |                            |
 | `repl`                |                                                                                   |                            |
 | `stream`              | [stream-browserify](https://github.com/browserify/stream-browserify)              |                            |
@@ -148,7 +148,7 @@ module.exports = {
 | `timers/promises`     | [isomorphic-timers-promises](https://github.com/niksy/isomorphic-timers-promises) |                            |
 | `tls`                 |                                                                                   | [tls](mock/tls.js)         |
 | `tty`                 | [tty-browserify](https://github.com/browserify/tty-browserify)                    | [tty](mock/tty.js)         |
-| `url`                 | [node-url](https://github.com/defunctzombie/node-url)                             |                            | Contains additional exports from newer Node versions |
+| `url`                 | [node-url](https://github.com/defunctzombie/node-url)                             |                            | Contains additional exports from newer Node versions (`URL` and `URLSearchParams` are not polyfilled) |
 | `util`                | [util](https://github.com/browserify/node-util)                                   |                            |
 | `vm`                  | [vm-browserify](https://github.com/browserify/vm-browserify)                      |                            |
 | `zlib`                | [browserify-zlib](https://github.com/browserify/browserify-zlib)                  |                            |
