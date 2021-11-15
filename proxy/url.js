@@ -151,33 +151,42 @@ const formatImportWithOverloads =
 	 *   ((urlObject: UrlObject | string, options?: never) => string)
 	 * )}
 	 */
-	function (urlObject, options) {
+	function (urlObject, options = {}) {
 		if (!(urlObject instanceof URL)) {
 			return formatImport(urlObject);
 		}
-		const { auth, fragment, search, unicode } = options ?? {
-			auth: true,
-			fragment: true,
-			search: true,
-			unicode: false
-		};
 
-		const parsed = parseImport(urlObject.toString());
+		if (typeof options !== 'object' || options === null) {
+			throw new TypeError(
+				'The "options" argument must be of type object.'
+			);
+		}
+
+		const auth = options.auth ?? true;
+		const fragment = options.fragment ?? true;
+		const search = options.search ?? true;
+		const unicode = options.unicode ?? false;
+
+		const parsed = new URL(urlObject.toString());
 
 		if (!auth) {
-			parsed.auth = null;
+			parsed.username = '';
+			parsed.password = '';
 		}
 
 		if (!fragment) {
-			parsed.hash = null;
+			parsed.hash = '';
 		}
 
 		if (!search) {
-			parsed.search = null;
-			parsed.query = null;
+			parsed.search = '';
 		}
 
-		return formatImport(parsed);
+		if (unicode) {
+			// Not implemented
+		}
+
+		return parsed.toString();
 	};
 
 const api = {

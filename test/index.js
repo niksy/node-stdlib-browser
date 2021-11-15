@@ -221,6 +221,89 @@ describe('`url` additional exports', function () {
 			}
 		}
 	});
+
+	it('url.format, URL instance passed as first argument', function () {
+		const myURL = new URL('http://xn--lck1c3crb1723bpq4a.com/a?a=b#c');
+
+		assert.strictEqual(
+			url.format(myURL),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b#c'
+		);
+
+		assert.strictEqual(
+			url.format(myURL, {}),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b#c'
+		);
+
+		[true, 1, 'test', Infinity].forEach((value) => {
+			// @ts-ignore
+			assert.throws(() => url.format(myURL, value), TypeError);
+		});
+
+		/*
+		 * Any falsy value other than undefined will be treated as false.
+		 * Any truthy value will be treated as true.
+		 */
+
+		assert.strictEqual(
+			url.format(myURL, { fragment: false }),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { fragment: '' }),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { fragment: 0 }),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { fragment: 1 }),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b#c'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { fragment: {} }),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b#c'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { search: false }),
+			'http://xn--lck1c3crb1723bpq4a.com/a#c'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { search: '' }),
+			'http://xn--lck1c3crb1723bpq4a.com/a#c'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { search: 0 }),
+			'http://xn--lck1c3crb1723bpq4a.com/a#c'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { search: 1 }),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b#c'
+		);
+
+		assert.strictEqual(
+			// @ts-ignore
+			url.format(myURL, { search: {} }),
+			'http://xn--lck1c3crb1723bpq4a.com/a?a=b#c'
+		);
+	});
 });
 
 describe('`querystring` additional exports', function () {
