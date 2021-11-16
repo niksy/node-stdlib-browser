@@ -12,3 +12,4 @@ esm/
 !example/esm
 example/cjs/*.dist.js
 example/esm/*.dist.js
+helpers/esbuild/shim.js

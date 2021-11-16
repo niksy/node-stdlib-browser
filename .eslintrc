@@ -45,12 +45,6 @@
 			}
 		},
 		{
-			"files": ["helpers/**/shim.js"],
-			"rules": {
-				"no-undef": 0
-			}
-		},
-		{
 			"files": ["rollup.config.js", "test/index.js"],
 			"plugins": ["eslint-plugin-unicorn"],
 			"rules": {
