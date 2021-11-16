@@ -9,7 +9,8 @@ Features:
 -   Based on [`node-libs-browser`](https://github.com/webpack/node-libs-browser)
     for Webpack
 -   Maintained with newer versions and modern implementations
--   Works with Webpack and Rollup, but should also work with other bundlers
+-   Works with Webpack, Rollup and esbuild, but should also work with other
+    bundlers
 -   Exports implementation with
     [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
     allows for builtin modules to be referenced by valid absolute URL strings
@@ -112,6 +113,38 @@ module.exports = {
 		}
 	}
 };
+```
+
+</details>
+
+### esbuild
+
+<details>
+	
+<summary>Show me</summary>
+
+Using esbuild requires you to use helper utilities and plugins.
+
+```js
+const path = require('path');
+const esbuild = require('esbuild');
+const plugin = require('node-stdlib-browser/helpers/esbuild/plugin.js');
+const stdLibBrowser = require('node-stdlib-browser');
+
+(async () => {
+	await esbuild.build({
+		// ...
+		inject: [
+			require.resolve('node-stdlib-browser/helpers/esbuild/shim.js')
+		],
+		define: {
+			global: 'global',
+			process: 'process',
+			Buffer: 'Buffer'
+		},
+		plugins: [plugin(stdLibBrowser)]
+	});
+})();
 ```
 
 </details>

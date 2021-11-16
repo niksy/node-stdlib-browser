@@ -31,12 +31,18 @@
 			}
 		},
 		{
-			"files": ["rollup.config.js"],
+			"files": ["rollup.config.js", "helpers/**/plugin.js"],
 			"parserOptions": {
 				"sourceType": "script"
 			},
 			"rules": {
 				"no-console": 0
+			}
+		},
+		{
+			"files": ["helpers/**/shim.js"],
+			"rules": {
+				"no-undef": 0
 			}
 		},
 		{
