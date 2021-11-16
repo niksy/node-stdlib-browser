@@ -453,4 +453,16 @@ describe('Bundling', function () {
 		await Promise.all(bundles);
 		assert.ok(true);
 	});
+
+	it('bundles for esbuild', async function () {
+		const bundles = [];
+		if (shouldBundle) {
+			bundles.push(execa('npm', ['run', 'build:esbuild:cjs'], { cwd }));
+		}
+		if (shouldBundleESM) {
+			// Bundles.push(execa('npm', ['run', 'build:esbuild:esm'], { cwd }));
+		}
+		await Promise.all(bundles);
+		assert.ok(true);
+	});
 });

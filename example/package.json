@@ -5,19 +5,29 @@
     "build:webpack:esm": "webpack --config ./esm/webpack.config.mjs",
     "build:rollup:cjs": "rollup --config ./cjs/rollup.config.js",
     "build:rollup:esm": "rollup --config ./esm/rollup.config.mjs",
+    "build:esbuild:cjs": "node ./cjs/esbuild.js",
+    "build:esbuild:esm": "node ./esm/esbuild.mjs",
     "open:webpack:cjs": "open ./cjs/webpack.html",
     "open:webpack:esm": "open ./esm/webpack.html",
     "open:rollup:cjs": "open ./cjs/rollup.html",
-    "open:rollup:esm": "open ./esm/rollup.html"
+    "open:rollup:esm": "open ./esm/rollup.html",
+    "open:esbuild:cjs": "open ./cjs/esbuild.html",
+    "open:esbuild:esm": "open ./esm/esbuild.html"
   },
   "devDependencies": {
+    "@chialab/esbuild-plugin-alias": "^0.12.31",
     "@rollup/plugin-alias": "^3.1.5",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-inject": "^4.0.3",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
+    "esbuild": "^0.13.14",
+    "esbuild-plugin-path-alias": "^1.0.3",
     "rollup": "^2.57.0",
     "webpack": "^5.54.0",
     "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "browser-resolve": "^2.0.0"
   }
 }
