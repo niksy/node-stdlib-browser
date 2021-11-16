@@ -2,6 +2,8 @@
 
 ## [Unreleased][]
 
+## [1.1.0][] - 2021-11-16
+
 ### Added
 
 -   Note regarding `URL` and `URLSearchParams` polyfilling
@@ -24,3 +26,5 @@
 
 [unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.0.0
+[unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.1.0
