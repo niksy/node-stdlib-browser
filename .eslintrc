@@ -10,6 +10,11 @@
 	"globals": {
 		"globalThis": false
 	},
+	"settings": {
+		"jsdoc": {
+			"preferredTypes": ["esbuild"]
+		}
+	},
 	"rules": {
 		"prettier/prettier": 1,
 		"camelcase": 0,

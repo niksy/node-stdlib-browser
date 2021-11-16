@@ -23,6 +23,7 @@
 		"proxy/**/*.js",
 		"mock/**/*.js",
 		"test/**/*.js",
-		"types/**/*.ts"
+		"types/**/*.ts",
+		"helpers/**/*.js"
 	]
 }
