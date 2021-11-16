@@ -2,6 +2,20 @@
 
 ## [Unreleased][]
 
+### Added
+
+-   Note regarding `URL` and `URLSearchParams` polyfilling
+-   Support for esbuild
+
+### Changed
+
+-   Improve Rollup global variable injecting
+-   Use `path.resolve` for URL methods
+
+### Fixed
+
+-   `url.format` to handle `URL`
+
 ## [1.0.0][] - 2021-11-13
 
 ### Added
