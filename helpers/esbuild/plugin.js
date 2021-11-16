@@ -1,19 +1,31 @@
 'use strict';
 
+/**
+ * @typedef {import('../../')} Packages
+ * @typedef {import('esbuild').Plugin} esbuild.Plugin
+ */
+
 const { promisify } = require('util');
 const browserResolve = require('browser-resolve');
 
 const pBrowserResolve = promisify(browserResolve);
 
-const plugin = (stdLibBrowser) => {
-	return {
+const plugin = (
+	/** @type {Packages | {[key: string]: string}} */ stdLibBrowser
+) => {
+	/** @type {esbuild.Plugin} */
+	const main = {
 		name: 'node-stdlib-browser-alias',
 		async setup(build) {
 			const map = new Map();
-			for (const [name, path] of Object.entries(stdLibBrowser)) {
-				const resolvedPath = await pBrowserResolve(path, {});
-				map.set(name, resolvedPath);
-			}
+			const promises = Object.entries(stdLibBrowser).map(
+				async ([name, path]) => {
+					// @ts-ignore
+					const resolvedPath = await pBrowserResolve(path, {});
+					map.set(name, resolvedPath);
+				}
+			);
+			await Promise.all(promises);
 
 			map.forEach((path, name) => {
 				build.onResolve({ filter: new RegExp(`^${name}$`) }, () => {
@@ -24,6 +36,7 @@ const plugin = (stdLibBrowser) => {
 			});
 		}
 	};
+	return main;
 };
 
 module.exports = plugin;

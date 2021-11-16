@@ -59,7 +59,11 @@ function getConfig(filename, options = {}) {
 						if (typeof prefix !== 'undefined') {
 							const tsconfig = {
 								extends: './tsconfig',
-								exclude: ['test/**/*.js', 'types/**/*-test*'],
+								exclude: [
+									'test/**/*.js',
+									'types/**/*-test*',
+									'helpers/**/*.js'
+								],
 								compilerOptions: {
 									declaration: true,
 									declarationMap: true,
