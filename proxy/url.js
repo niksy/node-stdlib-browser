@@ -15,6 +15,7 @@
 
 // @ts-ignore
 import { format, parse, resolve, resolveObject, Url } from 'url';
+import { resolve as pathResolve } from 'path';
 
 const formatImport = /** @type {formatImport}*/ (format);
 const parseImport = /** @type {parseImport}*/ (parse);
@@ -115,7 +116,7 @@ const pathToFileURL =
 	 */
 	function (filepath) {
 		const outURL = new URL('file://');
-		let resolved = filepath;
+		let resolved = pathResolve(filepath);
 		const filePathLast = filepath.charCodeAt(filepath.length - 1);
 		if (
 			filePathLast === CHAR_FORWARD_SLASH &&

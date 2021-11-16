@@ -30,9 +30,17 @@ function getConfig(filename, options = {}) {
 			(() => {
 				return {
 					name: 'resolve-id',
-					async resolveId(source) {
+					async resolveId(source, importer) {
 						if (source === 'url') {
 							return require.resolve('url/');
+						}
+						if (
+							source === 'path' &&
+							importer.includes('proxy/url.js')
+						) {
+							return require.resolve(
+								'rollup-plugin-node-builtins/src/es6/path.js'
+							);
 						}
 						return null;
 					}
