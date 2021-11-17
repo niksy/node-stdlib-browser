@@ -436,7 +436,7 @@ describe('Bundling', function () {
 			bundles.push(execa('npm', ['run', 'build:webpack:cjs'], { cwd }));
 		}
 		if (shouldBundleESM) {
-			// Bundles.push(execa('npm', ['run', 'build:webpack:esm'], { cwd }));
+			/* Bundles.push(execa('npm', ['run', 'build:webpack:esm'], { cwd }));*/
 		}
 		await Promise.all(bundles);
 		assert.ok(true);
@@ -448,7 +448,7 @@ describe('Bundling', function () {
 			bundles.push(execa('npm', ['run', 'build:rollup:cjs'], { cwd }));
 		}
 		if (shouldBundleESM) {
-			// Bundles.push(execa('npm', ['run', 'build:rollup:esm'], { cwd }));
+			bundles.push(execa('npm', ['run', 'build:rollup:esm'], { cwd }));
 		}
 		await Promise.all(bundles);
 		assert.ok(true);
@@ -460,7 +460,23 @@ describe('Bundling', function () {
 			bundles.push(execa('npm', ['run', 'build:esbuild:cjs'], { cwd }));
 		}
 		if (shouldBundleESM) {
-			// Bundles.push(execa('npm', ['run', 'build:esbuild:esm'], { cwd }));
+			bundles.push(execa('npm', ['run', 'build:esbuild:esm'], { cwd }));
+		}
+		await Promise.all(bundles);
+		assert.ok(true);
+	});
+
+	it('bundles for Browserify', async function () {
+		const bundles = [];
+		if (shouldBundle) {
+			bundles.push(
+				execa('npm', ['run', 'build:browserify:cjs'], { cwd })
+			);
+		}
+		if (shouldBundleESM) {
+			bundles.push(
+				execa('npm', ['run', 'build:browserify:esm'], { cwd })
+			);
 		}
 		await Promise.all(bundles);
 		assert.ok(true);

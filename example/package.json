@@ -7,12 +7,16 @@
     "build:rollup:esm": "rollup --config ./esm/rollup.config.mjs",
     "build:esbuild:cjs": "node ./cjs/esbuild.js",
     "build:esbuild:esm": "node ./esm/esbuild.mjs",
+    "build:browserify:cjs": "node ./cjs/browserify.js",
+    "build:browserify:esm": "node ./esm/browserify.mjs",
     "open:webpack:cjs": "open ./cjs/webpack.html",
     "open:webpack:esm": "open ./esm/webpack.html",
     "open:rollup:cjs": "open ./cjs/rollup.html",
     "open:rollup:esm": "open ./esm/rollup.html",
     "open:esbuild:cjs": "open ./cjs/esbuild.html",
-    "open:esbuild:esm": "open ./esm/esbuild.html"
+    "open:esbuild:esm": "open ./esm/esbuild.html",
+    "open:browserify:cjs": "open ./cjs/browserify.html",
+    "open:browserify:esm": "open ./esm/browserify.html"
   },
   "devDependencies": {
     "@chialab/esbuild-plugin-alias": "^0.12.31",
@@ -21,6 +25,8 @@
     "@rollup/plugin-inject": "^4.0.3",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
+    "aliasify": "^2.1.0",
+    "browserify": "^17.0.0",
     "esbuild": "^0.13.14",
     "esbuild-plugin-path-alias": "^1.0.3",
     "rollup": "^2.57.0",

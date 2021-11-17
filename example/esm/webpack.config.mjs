@@ -1,5 +1,5 @@
 import path from 'path';
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'url';
 import webpack from 'webpack';
 import stdLibBrowser from '../../esm/index.js';
 

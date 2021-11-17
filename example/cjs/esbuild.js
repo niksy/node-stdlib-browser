@@ -9,6 +9,8 @@ const stdLibBrowser = require('../../cjs/index.js');
 			entryPoints: [path.resolve(__dirname, 'index.js')],
 			outfile: path.resolve(__dirname, 'esbuild.dist.js'),
 			bundle: true,
+			format: 'iife',
+			globalName: 'stdLibBrowser',
 			inject: [path.resolve(__dirname, '../../helpers/esbuild/shim.js')],
 			define: {
 				global: 'global',

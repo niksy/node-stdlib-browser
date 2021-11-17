@@ -9,8 +9,8 @@ Features:
 -   Based on [`node-libs-browser`](https://github.com/webpack/node-libs-browser)
     for Webpack
 -   Maintained with newer versions and modern implementations
--   Works with Webpack, Rollup and esbuild, but should also work with other
-    bundlers
+-   Works with Webpack, Rollup, esbuild and Browserify, but should also work
+    with other bundlers
 -   Exports implementation with
     [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
     allows for builtin modules to be referenced by valid absolute URL strings
@@ -143,6 +143,45 @@ const stdLibBrowser = require('node-stdlib-browser');
 		plugins: [plugin(stdLibBrowser)]
 	});
 })();
+```
+
+</details>
+
+### Browserify
+
+<details>
+	
+<summary>Show me</summary>
+
+Bundling ES modules is currently not supported natively in Browserify, but you
+can try using [esmify](https://github.com/mattdesl/esmify) or
+[babelify](https://github.com/babel/babelify) for transforming to CommonJS
+first.
+
+```js
+const fs = require('fs');
+const path = require('path');
+const browserify = require('browserify');
+const aliasify = require('aliasify');
+const stdLibBrowser = require('node-stdlib-browser');
+
+const b = browserify(
+	[
+		/* ... */
+	],
+	{
+		// ...
+		transform: [[aliasify, { aliases: stdLibBrowser }]],
+		insertGlobalVars: {
+			process: () => {
+				return `require('${stdLibBrowser.process}')`;
+			},
+			Buffer: () => {
+				return `require('${stdLibBrowser.buffer}').Buffer`;
+			}
+		}
+	}
+);
 ```
 
 </details>
