@@ -15,6 +15,16 @@ export default {
 	resolve: {
 		alias: stdLibBrowser
 	},
+	module: {
+		rules: [
+			{
+				test: /\.m?js$/,
+				resolve: {
+					fullySpecified: false
+				}
+			}
+		]
+	},
 	plugins: [
 		new webpack.ProvidePlugin({
 			process: stdLibBrowser.process,

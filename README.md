@@ -52,6 +52,26 @@ module.exports = {
 };
 ```
 
+If you’re using ESM config, additional configuration is needed to handle
+unspecified extensions:
+
+```js
+// webpack.config.js
+module.exports = {
+	// ...
+	module: {
+		rules: [
+			{
+				test: /\.m?js$/,
+				resolve: {
+					fullySpecified: false
+				}
+			}
+		]
+	}
+};
+```
+
 </details>
 
 ### Rollup
