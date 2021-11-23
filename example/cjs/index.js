@@ -12,6 +12,7 @@ const events = require('events');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const http2 = require('http2');
 const _module = require('module');
 const net = require('net');
 const os = require('os');
@@ -52,6 +53,7 @@ console.log('events', events);
 console.log('fs', fs);
 console.log('http', http);
 console.log('https', https);
+console.log('http2', http2);
 console.log('module', _module);
 console.log('net', net);
 console.log('os', os);
@@ -95,6 +97,7 @@ module.exports = {
 	fs,
 	http,
 	https,
+	http2,
 	module: _module,
 	net,
 	os,

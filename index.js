@@ -29,6 +29,7 @@ const events = resolvePath('events/');
 const fs = resolvePath('./mock/empty.js');
 const http = resolvePath('stream-http');
 const https = resolvePath('https-browserify');
+const http2 = resolvePath('./mock/empty.js');
 const _module = resolvePath('./mock/empty.js');
 const net = resolvePath('./mock/empty.js');
 const os = resolvePath('os-browserify/browser.js');
@@ -74,6 +75,7 @@ const packages = {
 	fs,
 	http,
 	https,
+	http2,
 	module: _module,
 	net,
 	os,

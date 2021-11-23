@@ -32,6 +32,7 @@ const packages = {
 	fs: 'mock/empty.js',
 	http: 'node_modules/stream-http',
 	https: 'node_modules/https-browserify',
+	http2: 'mock/empty.js',
 	module: 'mock/empty.js',
 	net: 'mock/empty.js',
 	os: 'node_modules/os-browserify',

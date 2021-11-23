@@ -12,6 +12,7 @@ import events from 'events';
 import fs from 'fs';
 import http from 'http';
 import https from 'https';
+import http2 from 'http2';
 import _module from 'module';
 import net from 'net';
 import os from 'os';
@@ -52,6 +53,7 @@ console.log('events', events);
 console.log('fs', fs);
 console.log('http', http);
 console.log('https', https);
+console.log('http2', http2);
 console.log('module', _module);
 console.log('net', net);
 console.log('os', os);
@@ -95,6 +97,7 @@ export default {
 	fs,
 	http,
 	https,
+	http2,
 	module: _module,
 	net,
 	os,
