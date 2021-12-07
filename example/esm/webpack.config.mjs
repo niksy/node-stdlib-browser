@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import webpack from 'webpack';
+import { NodeProtocolUrlPlugin } from '../../helpers/webpack/plugin.js';
 import stdLibBrowser from '../../esm/index.js';
 
 export default {
@@ -26,6 +27,7 @@ export default {
 		]
 	},
 	plugins: [
+		new NodeProtocolUrlPlugin(),
 		new webpack.ProvidePlugin({
 			process: stdLibBrowser.process,
 			Buffer: stdLibBrowser.buffer

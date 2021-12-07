@@ -12,7 +12,7 @@ Features:
 -   Works with Webpack, Rollup, esbuild and Browserify, but should also work
     with other bundlers
 -   Exports implementation with
-    [`node:` protocol](https://nodejs.org/api/esm.html#esm_node_imports) which
+    [`node:` protocol](https://nodejs.org/api/esm.html#node-imports) which
     allows for builtin modules to be referenced by valid absolute URL strings
 
 Check [example](/example) to see how modules work in browser environment.
@@ -32,10 +32,16 @@ npm install node-stdlib-browser --save-dev
 <summary>Show me</summary>
 
 As of Webpack 5, aliases and globals provider need to be explicitly configured.
+If you want to handle
+[`node:` protocol](https://nodejs.org/api/esm.html#node-imports) imports, you
+need to provide helper plugin.
 
 ```js
 // webpack.config.js
 const stdLibBrowser = require('node-stdlib-browser');
+const {
+	NodeProtocolUrlPlugin
+} = require('node-stdlib-browser/helpers/webpack/plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -44,6 +50,7 @@ module.exports = {
 		alias: stdLibBrowser
 	},
 	plugins: [
+		new NodeProtocolUrlPlugin(),
 		new webpack.ProvidePlugin({
 			process: stdLibBrowser.process,
 			Buffer: [stdLibBrowser.buffer, 'Buffer']
