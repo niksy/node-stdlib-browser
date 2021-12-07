@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const { NodeProtocolUrlPlugin } = require('../../helpers/webpack/plugin.js');
 const stdLibraryBrowser = require('../../cjs/index.js');
 
 module.exports = {
@@ -15,6 +16,7 @@ module.exports = {
 		alias: stdLibraryBrowser
 	},
 	plugins: [
+		new NodeProtocolUrlPlugin(),
 		new webpack.ProvidePlugin({
 			process: stdLibraryBrowser.process,
 			Buffer: stdLibraryBrowser.buffer

@@ -38,6 +38,7 @@ import url from 'url';
 import util from 'util';
 import vm from 'vm';
 import zlib from 'zlib';
+import nodeAssert from 'node:assert';
 
 console.log('assert', assert);
 console.log('buffer', buffer);
@@ -81,6 +82,7 @@ console.log('vm', vm);
 console.log('zlib', zlib);
 console.log('global Buffer', Buffer);
 console.log('global process', process);
+console.log('node:assert', nodeAssert);
 
 export default {
 	assert,
@@ -124,5 +126,6 @@ export default {
 	vm,
 	zlib,
 	__Buffer: Buffer,
-	__process: process
+	__process: process,
+	__assert: nodeAssert
 };

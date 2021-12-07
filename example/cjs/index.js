@@ -38,6 +38,7 @@ const url = require('url');
 const util = require('util');
 const vm = require('vm');
 const zlib = require('zlib');
+const nodeAssert = require('node:assert');
 
 console.log('assert', assert);
 console.log('buffer', buffer);
@@ -81,6 +82,7 @@ console.log('vm', vm);
 console.log('zlib', zlib);
 console.log('global Buffer', Buffer);
 console.log('global process', process);
+console.log('node:assert', nodeAssert);
 
 module.exports = {
 	assert,
@@ -124,5 +126,6 @@ module.exports = {
 	vm,
 	zlib,
 	__Buffer: Buffer,
-	__process: process
+	__process: process,
+	__assert: nodeAssert
 };
