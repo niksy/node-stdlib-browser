@@ -2,6 +2,8 @@
 
 ## [Unreleased][]
 
+## [1.2.0][] - 2021-12-08
+
 ### Added
 
 -   Support for `node:` protocol in Webpack
@@ -30,7 +32,7 @@
 
 -   Initial implementation
 
-[unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.0.0
-[unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.1.0...HEAD
 [1.1.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.1.0
+[unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.2.0
