@@ -28,6 +28,7 @@
 			}
 		]
 	},
+	"ignorePatterns": ["helpers/esbuild/shim.js", "example/**/*.dist.js"],
 	"overrides": [
 		{
 			"files": "mock/*.js",
