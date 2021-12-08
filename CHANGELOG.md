@@ -2,6 +2,12 @@
 
 ## [Unreleased][]
 
+### Added
+
+-   Support for `node:` protocol in Webpack
+    ([#12](https://github.com/niksy/node-stdlib-browser/))
+-   Rollup warning helper function
+
 ## [1.1.0][] - 2021-11-16
 
 ### Added
