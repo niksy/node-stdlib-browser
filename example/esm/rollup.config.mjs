@@ -4,6 +4,7 @@ import json from '@rollup/plugin-json';
 import alias from '@rollup/plugin-alias';
 import inject from '@rollup/plugin-inject';
 import stdLibBrowser from '../../esm/index.js';
+import {handleCircularDependancyWarning} from '../../helpers/rollup/plugin.js';
 
 export default {
 	input: './esm/index.mjs',
@@ -31,21 +32,6 @@ export default {
 		}),
 	],
 	onwarn: (warning, rollupWarn) => {
-		const packagesWithCircularDependencies = [
-			'util/',
-			'assert/',
-			'readable-stream/',
-			'crypto-browserify/'
-		];
-		if (
-			!(
-				warning.code === 'CIRCULAR_DEPENDENCY' &&
-				packagesWithCircularDependencies.some((modulePath) =>
-					warning.importer.includes(modulePath)
-				)
-			)
-		) {
-			rollupWarn(warning);
-		}
+		handleCircularDependancyWarning(warning, rollupWarn);
 	}
 };

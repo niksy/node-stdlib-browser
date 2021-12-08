@@ -6,6 +6,9 @@ const json = require('@rollup/plugin-json');
 const alias = require('@rollup/plugin-alias');
 const inject = require('@rollup/plugin-inject');
 const stdLibBrowser = require('../../cjs/index.js');
+const {
+	handleCircularDependancyWarning
+} = require('../../helpers/rollup/plugin.js');
 
 module.exports = {
 	input: './cjs/index.js',
@@ -33,21 +36,6 @@ module.exports = {
 		})
 	],
 	onwarn: (warning, rollupWarn) => {
-		const packagesWithCircularDependencies = [
-			'util/',
-			'assert/',
-			'readable-stream/',
-			'crypto-browserify/'
-		];
-		if (
-			!(
-				warning.code === 'CIRCULAR_DEPENDENCY' &&
-				packagesWithCircularDependencies.some((modulePath) =>
-					warning.importer.includes(modulePath)
-				)
-			)
-		) {
-			rollupWarn(warning);
-		}
+		handleCircularDependancyWarning(warning, rollupWarn);
 	}
 };
