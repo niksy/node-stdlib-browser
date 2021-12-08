@@ -46,7 +46,7 @@
     "release": "np --no-release-draft",
     "test": "BABEL_ENV=test nyc mocha --require @babel/register --require esm 'test/**/*.js' && nyc check-coverage",
     "test:watch": "nodemon --exec npm test",
-    "version": "if [ $(git rev-parse --abbrev-ref HEAD) == 'master' ]; then version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md; else echo; fi"
+    "version": "if [ $(git rev-parse --abbrev-ref HEAD) == 'master' ]; then sed -i '' '/\\[unreleased\\]:/d' CHANGELOG.md && version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md; else echo; fi"
   },
   "dependencies": {
     "assert": "^2.0.0",
@@ -112,7 +112,7 @@
     "lint-staged": "^10.4.2",
     "mocha": "^8.2.0",
     "nodemon": "^2.0.6",
-    "np": "^6.5.0",
+    "np": "^7.6.0",
     "nyc": "^15.1.0",
     "parse-node-version": "^1.0.1",
     "prettier": "^2.4.0",
