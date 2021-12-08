@@ -4,7 +4,7 @@ import json from '@rollup/plugin-json';
 import alias from '@rollup/plugin-alias';
 import inject from '@rollup/plugin-inject';
 import stdLibBrowser from '../../esm/index.js';
-import {handleCircularDependancyWarning} from '../../helpers/rollup/plugin.js';
+import { handleCircularDependancyWarning } from '../../helpers/rollup/plugin.js';
 
 export default {
 	input: './esm/index.mjs',
@@ -29,7 +29,7 @@ export default {
 		inject({
 			process: stdLibBrowser.process,
 			Buffer: [stdLibBrowser.buffer, 'Buffer']
-		}),
+		})
 	],
 	onwarn: (warning, rollupWarn) => {
 		handleCircularDependancyWarning(warning, rollupWarn);

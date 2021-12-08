@@ -37,7 +37,7 @@
   ],
   "scripts": {
     "build": "rollup --config rollup.config.js && babel helpers/esbuild/shim.src.js --out-file=helpers/esbuild/shim.js",
-    "lint": "eslint '{index,lib/**/*,test/**/*}.js'",
+    "lint": "eslint '{index,lib/**/*,test/**/*,helpers/**/*,example/**/*}.{js,mjs}'",
     "lint:types": "tsc",
     "module-check": "node -e 'require(\"node-stdlib-browser\"); require(\"node-stdlib-browser/helpers/esbuild/plugin\");' && node --input-type=module -e 'import \"node-stdlib-browser\"; import \"node-stdlib-browser/helpers/esbuild/plugin\";'",
     "prepublishOnly": "npm run build",
