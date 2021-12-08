@@ -101,7 +101,7 @@ that. You can ignore these warnings with helper function
 const stdLibBrowser = require('node-stdlib-browser');
 const {
 	handleCircularDependancyWarning
-} = require('node-stdlib-browser/rollup/plugin');
+} = require('node-stdlib-browser/helpers/rollup/plugin');
 const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const json = require('@rollup/plugin-json');
