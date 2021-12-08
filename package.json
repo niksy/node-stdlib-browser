@@ -16,6 +16,7 @@
     },
     "./helpers/esbuild/*": "./helpers/esbuild/*.js",
     "./helpers/webpack/*": "./helpers/webpack/*.js",
+    "./helpers/rollup/*": "./helpers/rollup/*.js",
     "./package.json": "./package.json"
   },
   "main": "cjs/index.js",
@@ -29,6 +30,7 @@
     "esm/",
     "helpers/esbuild/{plugin,shim}.js",
     "helpers/webpack/plugin.js",
+    "helpers/rollup/plugin.js",
     "CHANGELOG.md",
     "LICENSE.md",
     "README.md"

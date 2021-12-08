@@ -93,12 +93,15 @@ installed with npm so they need to be properly resolved (taking into account
 browser-specific implementations).
 
 Some dependencies can have circular dependencies and Rollup will warn you about
-that. You can
-[ignore these warnings with `onwarn` function](https://github.com/rollup/rollup/issues/1089#issuecomment-635564942).
+that. You can ignore these warnings with helper function
+([reference](<(https://github.com/rollup/rollup/issues/1089#issuecomment-635564942)>)).
 
 ```js
 // rollup.config.js
 const stdLibBrowser = require('node-stdlib-browser');
+const {
+	handleCircularDependancyWarning
+} = require('node-stdlib-browser/rollup/plugin');
 const { default: resolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const json = require('@rollup/plugin-json');
@@ -122,22 +125,7 @@ module.exports = {
 		})
 	],
 	onwarn: (warning, rollupWarn) => {
-		const packagesWithCircularDependencies = [
-			'util/',
-			'assert/',
-			'readable-stream/',
-			'crypto-browserify/'
-		];
-		if (
-			!(
-				warning.code === 'CIRCULAR_DEPENDENCY' &&
-				packagesWithCircularDependencies.some((modulePath) =>
-					warning.importer.includes(modulePath)
-				)
-			)
-		) {
-			rollupWarn(warning);
-		}
+		handleCircularDependancyWarning(warning, rollupWarn);
 	}
 };
 ```
