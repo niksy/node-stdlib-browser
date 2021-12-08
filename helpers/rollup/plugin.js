@@ -1,6 +1,14 @@
 'use strict';
 
-function handleCircularDependancyWarning(warning, rollupWarn) {
+/**
+ * @typedef {import('rollup')} rollup
+ * @typedef {import('rollup').WarningHandlerWithDefault} rollup.WarningHandlerWithDefault
+ */
+
+/**
+ * @type {rollup.WarningHandlerWithDefault}
+ */
+function handleCircularDependancyWarning(warning, warningHandler) {
 	const packagesWithCircularDependencies = [
 		'util/',
 		'assert/',
@@ -10,12 +18,15 @@ function handleCircularDependancyWarning(warning, rollupWarn) {
 	if (
 		!(
 			warning.code === 'CIRCULAR_DEPENDENCY' &&
-			packagesWithCircularDependencies.some((modulePath) =>
-				warning.importer.includes(modulePath)
-			)
+			packagesWithCircularDependencies.some((modulePath) => {
+				if (typeof warning.importer !== 'string') {
+					return false;
+				}
+				return warning.importer.includes(modulePath);
+			})
 		)
 	) {
-		rollupWarn(warning);
+		warningHandler(warning);
 	}
 }
 
