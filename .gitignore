@@ -11,5 +11,7 @@ esm/
 !example/cjs
 !example/esm
 example/cjs/*.dist.js
+example/cjs/vite/dist
 example/esm/*.dist.js
+example/esm/vite/dist
 helpers/esbuild/shim.js

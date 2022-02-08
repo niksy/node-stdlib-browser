@@ -455,6 +455,18 @@ describe('Bundling', function () {
 		assert.ok(true);
 	});
 
+	it('bundles for Vite', async function () {
+		const bundles = [];
+		if (shouldBundle) {
+			bundles.push(execa('npm', ['run', 'build:vite:cjs'], { cwd }));
+		}
+		if (shouldBundleESM) {
+			bundles.push(execa('npm', ['run', 'build:vite:esm'], { cwd }));
+		}
+		await Promise.all(bundles);
+		assert.ok(true);
+	});
+
 	it('bundles for esbuild', async function () {
 		const bundles = [];
 		if (shouldBundle) {

@@ -9,10 +9,9 @@ Features:
 -   Based on [`node-libs-browser`](https://github.com/webpack/node-libs-browser)
     for Webpack
 -   Maintained with newer versions and modern implementations
--   Works with Webpack, Rollup, esbuild and Browserify, but should also work
-    with other bundlers
--   Exports implementation with
-    [`node:` protocol](https://nodejs.org/api/esm.html#node-imports) which
+-   Works with Webpack, Rollup, Vite, esbuild and Browserify, but should also
+    work with other bundlers
+-   Exports implementation with [`node:` protocol][node-protocol-imports] which
     allows for builtin modules to be referenced by valid absolute URL strings
 
 Check [example](/example) to see how modules work in browser environment.
@@ -127,6 +126,59 @@ module.exports = {
 	onwarn: (warning, rollupWarn) => {
 		handleCircularDependancyWarning(warning, rollupWarn);
 	}
+};
+```
+
+</details>
+
+### Vite
+
+<details>
+	
+<summary>Show me</summary>
+
+Vite config uses combination of Rollup and esbuild plugins. [`node:` protocol]
+imports are currently not supported
+([open issue](https://github.com/vitejs/vite/issues/6729)).
+
+```js
+const inject = require('@rollup/plugin-inject');
+
+module.exports = async () => {
+	const { default: stdLibBrowser } = await import('node-stdlib-browser');
+	return {
+		resolve: {
+			alias: stdLibBrowser
+		},
+		optimizeDeps: {
+			include: ['buffer', 'process']
+		},
+		plugins: [
+			{
+				...inject({
+					global: [
+						require.resolve(
+							'node-stdlib-browser/helpers/esbuild/shim'
+						),
+						'global'
+					],
+					process: [
+						require.resolve(
+							'node-stdlib-browser/helpers/esbuild/shim'
+						),
+						'process'
+					],
+					Buffer: [
+						require.resolve(
+							'node-stdlib-browser/helpers/esbuild/shim'
+						),
+						'Buffer'
+					]
+				}),
+				enforce: 'post'
+			}
+		]
+	};
 };
 ```
 
@@ -299,5 +351,6 @@ MIT © [Ivan Nikolić](http://ivannikolic.com)
 
 [ci]: https://github.com/niksy/node-stdlib-browser/actions?query=workflow%3ACI
 [ci-img]: https://github.com/niksy/node-stdlib-browser/workflows/CI/badge.svg?branch=master
+[node-protocol-imports]: https://nodejs.org/api/esm.html#node-imports
 
 <!-- prettier-ignore-end -->
