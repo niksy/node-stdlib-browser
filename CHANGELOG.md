@@ -2,6 +2,10 @@
 
 ## [Unreleased][]
 
+### Added
+
+-   Support information and instructions for Vite
+
 ## [1.2.0][] - 2021-12-08
 
 ### Added
