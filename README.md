@@ -31,8 +31,7 @@ npm install node-stdlib-browser --save-dev
 <summary>Show me</summary>
 
 As of Webpack 5, aliases and globals provider need to be explicitly configured.
-If you want to handle
-[`node:` protocol](https://nodejs.org/api/esm.html#node-imports) imports, you
+If you want to handle [`node:` protocol][node-protocol-imports] imports, you
 need to provide helper plugin.
 
 ```js
@@ -138,8 +137,8 @@ module.exports = {
 <summary>Show me</summary>
 
 Vite config uses combination of Rollup and esbuild plugins. [`node:`
-protocol][node-protocol-import] imports are currently not supported
-([open issue](https://github.com/vitejs/vite/issues/6729)).
+protocol][node-protocol-imports] imports are currently not supported
+([issue](https://github.com/vitejs/vite/issues/6729)).
 
 ```js
 const inject = require('@rollup/plugin-inject');
