@@ -140,45 +140,16 @@ Vite config uses combination of Rollup and esbuild plugins. [`node:`
 protocol][node-protocol-imports] imports are currently not supported
 ([issue](https://github.com/vitejs/vite/issues/6729)).
 
-```js
-const inject = require('@rollup/plugin-inject');
+There is [a third-party Vite plugin](https://github.com/sodatea/vite-plugin-node-stdlib-browser) that can help simplify the configurations:
 
-module.exports = async () => {
-	const { default: stdLibBrowser } = await import('node-stdlib-browser');
-	return {
-		resolve: {
-			alias: stdLibBrowser
-		},
-		optimizeDeps: {
-			include: ['buffer', 'process']
-		},
-		plugins: [
-			{
-				...inject({
-					global: [
-						require.resolve(
-							'node-stdlib-browser/helpers/esbuild/shim'
-						),
-						'global'
-					],
-					process: [
-						require.resolve(
-							'node-stdlib-browser/helpers/esbuild/shim'
-						),
-						'process'
-					],
-					Buffer: [
-						require.resolve(
-							'node-stdlib-browser/helpers/esbuild/shim'
-						),
-						'Buffer'
-					]
-				}),
-				enforce: 'post'
-			}
-		]
-	};
-};
+```js
+// vite.config.js
+import { defineConfig } from 'vite';
+import nodePolyfills from 'vite-plugin-node-stdlib-browser';
+
+export default defineConfig({
+	plugins: [nodePolyfills()];
+})
 ```
 
 </details>
