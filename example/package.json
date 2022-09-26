@@ -11,6 +11,8 @@
     "build:browserify:esm": "node ./esm/browserify.mjs",
     "build:vite:cjs": "vite build ./cjs/vite",
     "build:vite:esm": "vite build ./esm/vite",
+    "build:vite-plugin:cjs": "vite build ./cjs/vite-plugin",
+    "build:vite-plugin:esm": "vite build ./esm/vite-plugin",
     "open:webpack:cjs": "open ./cjs/webpack.html",
     "open:webpack:esm": "open ./esm/webpack.html",
     "open:rollup:cjs": "open ./cjs/rollup.html",
@@ -20,7 +22,9 @@
     "open:browserify:cjs": "open ./cjs/browserify.html",
     "open:browserify:esm": "open ./esm/browserify.html",
     "open:vite:cjs": "vite preview ./cjs/vite --open",
-    "open:vite:esm": "vite preview ./esm/vite --open"
+    "open:vite:esm": "vite preview ./esm/vite --open",
+    "open:vite-plugin:cjs": "vite preview ./cjs/vite-plugin --open",
+    "open:vite-plugin:esm": "vite preview ./esm/vite-plugin --open"
   },
   "devDependencies": {
     "@chialab/esbuild-plugin-alias": "^0.12.31",
@@ -35,6 +39,7 @@
     "esbuild-plugin-path-alias": "^1.0.3",
     "rollup": "^2.57.0",
     "vite": "^2.7.13",
+    "vite-plugin-node-stdlib-browser": "^0.1.1",
     "webpack": "^5.54.0",
     "webpack-cli": "^4.8.0"
   },
