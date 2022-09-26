@@ -427,7 +427,6 @@ describe('Bundling', function () {
 	before(async function () {
 		if (shouldBundle) {
 			await execa('npm', ['install'], { cwd });
-			await execa('npm', ['run', 'build'], { cwd });
 		}
 	});
 
