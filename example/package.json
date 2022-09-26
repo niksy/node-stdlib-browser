@@ -1,4 +1,6 @@
 {
+  "name": "node-stdlib-browser/example",
+  "version": "0.0.0",
   "scripts": {
     "build": "cd .. && npm run build",
     "build:webpack:cjs": "webpack --config ./cjs/webpack.config.js",
@@ -35,7 +37,7 @@
     "@rollup/plugin-node-resolve": "^13.0.5",
     "aliasify": "^2.1.0",
     "browserify": "^17.0.0",
-    "esbuild": "^0.13.14",
+    "esbuild": "^0.14.23",
     "esbuild-plugin-path-alias": "^1.0.3",
     "rollup": "^2.57.0",
     "vite": "^2.7.13",
