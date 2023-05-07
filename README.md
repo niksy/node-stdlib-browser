@@ -136,9 +136,7 @@ module.exports = {
 	
 <summary>Show me</summary>
 
-Vite config uses combination of Rollup and esbuild plugins. [`node:`
-protocol][node-protocol-imports] imports are currently not supported
-([issue](https://github.com/vitejs/vite/issues/6729)).
+Vite config uses combination of Rollup and esbuild plugins.
 
 ```js
 const inject = require('@rollup/plugin-inject');
