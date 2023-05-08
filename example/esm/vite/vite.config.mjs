@@ -3,6 +3,7 @@ import inject from '@rollup/plugin-inject';
 import stdLibBrowser from '../../../esm/index.js';
 
 const require = createRequire(import.meta.url);
+const esbuildShim = require.resolve('../../../helpers/esbuild/shim');
 
 export default {
 	resolve: {
@@ -14,18 +15,9 @@ export default {
 	plugins: [
 		{
 			...inject({
-				global: [
-					require.resolve('../../../helpers/esbuild/shim'),
-					'global'
-				],
-				process: [
-					require.resolve('../../../helpers/esbuild/shim'),
-					'process'
-				],
-				Buffer: [
-					require.resolve('../../../helpers/esbuild/shim'),
-					'Buffer'
-				]
+				global: [esbuildShim, 'global'],
+				process: [esbuildShim, 'process'],
+				Buffer: [esbuildShim, 'Buffer']
 			}),
 			enforce: 'post'
 		}

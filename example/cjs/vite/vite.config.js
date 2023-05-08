@@ -2,6 +2,8 @@
 
 const inject = require('@rollup/plugin-inject');
 
+const esbuildShim = require.resolve('../../../helpers/esbuild/shim');
+
 module.exports = async () => {
 	const { default: stdLibBrowser } = await import('../../../esm/index.js');
 	return {
@@ -14,18 +16,9 @@ module.exports = async () => {
 		plugins: [
 			{
 				...inject({
-					global: [
-						require.resolve('../../../helpers/esbuild/shim'),
-						'global'
-					],
-					process: [
-						require.resolve('../../../helpers/esbuild/shim'),
-						'process'
-					],
-					Buffer: [
-						require.resolve('../../../helpers/esbuild/shim'),
-						'Buffer'
-					]
+					global: [esbuildShim, 'global'],
+					process: [esbuildShim, 'process'],
+					Buffer: [esbuildShim, 'Buffer']
 				}),
 				enforce: 'post'
 			}
