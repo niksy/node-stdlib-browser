@@ -136,7 +136,11 @@ module.exports = {
 	
 <summary>Show me</summary>
 
-Vite config uses combination of Rollup and esbuild plugins.
+Vite config uses combination of Rollup and esbuild plugins. It’s **important**
+to use dynamic import when using CommonJS configuration so ESM version of
+modules is picked up. This allows Vite bundling to use our mocking
+implementation and implement heuristics such as proper tree-shaking and dead
+code removal marking.
 
 ```js
 const inject = require('@rollup/plugin-inject');
