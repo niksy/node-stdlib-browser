@@ -170,6 +170,14 @@ module.exports = async () => {
 };
 ```
 
+#### Vite plugins
+
+If you wish to use simpler configuration, you can use one of the available Vite
+plugins which use this package under the hood:
+
+-   https://github.com/sodatea/vite-plugin-node-stdlib-browser
+-   https://github.com/davidmyersdev/vite-plugin-node-polyfills
+
 </details>
 
 ### esbuild
