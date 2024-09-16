@@ -5,6 +5,7 @@
 ### Added
 
 -   Support information and instructions for Vite
+-   Update dependencies
 
 ## [1.2.0][] - 2021-12-08
 
