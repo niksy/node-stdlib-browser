@@ -2,6 +2,8 @@
 
 ## [Unreleased][]
 
+## [1.2.1][] - 2024-09-16
+
 ### Added
 
 -   Support information and instructions for Vite
@@ -39,5 +41,6 @@
 
 [1.0.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.0.0
 [1.1.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.1.0
-[unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.2.0...HEAD
 [1.2.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.2.0
+[Unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/niksy/node-stdlib-browser/tree/v1.2.1
