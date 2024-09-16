@@ -17,6 +17,7 @@ const _module = require('module');
 const net = require('net');
 const os = require('os');
 const path = require('path');
+const punycode = require('punycode');
 const _process = require('process');
 const querystring = require('querystring');
 const readline = require('readline');
@@ -38,7 +39,6 @@ const util = require('util');
 const vm = require('vm');
 const zlib = require('zlib');
 const nodeAssert = require('node:assert');
-const punycode = require('punycode/');
 
 console.log('assert', assert);
 console.log('buffer', buffer);
