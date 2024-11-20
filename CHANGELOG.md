@@ -6,6 +6,8 @@
 
 -   Pin `domain-browser` to 4.22.0
 -   Add `require` check for path resolver
+-   Proxy `process` with additional exports
+    ([#34](https://github.com/niksy/node-stdlib-browser/pull/34))
 
 ## [1.2.1][] - 2024-09-16
 
@@ -19,7 +21,7 @@
 ### Added
 
 -   Support for `node:` protocol in Webpack
-    ([#12](https://github.com/niksy/node-stdlib-browser/))
+    ([#12](https://github.com/niksy/node-stdlib-browser/issues/12))
 -   Rollup warning helper function
 
 ## [1.1.0][] - 2021-11-16

@@ -34,6 +34,9 @@ function getConfig(filename, options = {}) {
 						if (source === 'url') {
 							return require.resolve('url/');
 						}
+						if (source === 'process/browser.js') {
+							return require.resolve('process/browser.js');
+						}
 						if (
 							source === 'path' &&
 							importer.includes('proxy/url.js')
@@ -162,6 +165,14 @@ module.exports = [
 	],
 	[
 		'proxy/querystring.js',
+		{ cjsOutro: 'exports = module.exports = api;', cjsExports: 'named' }
+	],
+	[
+		'proxy/process.js',
+		{ cjsOutro: 'exports = module.exports = api;', cjsExports: 'named' }
+	],
+	[
+		'proxy/process/browser.js',
 		{ cjsOutro: 'exports = module.exports = api;', cjsExports: 'named' }
 	]
 ].map((entry) => {

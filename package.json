@@ -36,7 +36,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rollup --config rollup.config.js && babel helpers/esbuild/shim.src.js --out-file=helpers/esbuild/shim.js",
+    "build": "del '{esm/,cjs/}' && rollup --config rollup.config.js && babel helpers/esbuild/shim.src.js --out-file=helpers/esbuild/shim.js",
     "lint": "eslint '{index,lib/**/*,test/**/*,helpers/**/*,example/**/*}.{js,mjs}'",
     "lint:types": "tsc",
     "module-check": "node -e 'require(\"node-stdlib-browser\"); require(\"node-stdlib-browser/helpers/esbuild/plugin\");' && node --input-type=module -e 'import \"node-stdlib-browser\"; import \"node-stdlib-browser/helpers/esbuild/plugin\";'",
@@ -94,6 +94,7 @@
     "core-js": "^2.6.5",
     "cpy": "^8.1.2",
     "del": "^6.0.0",
+    "del-cli": "^3.0.1",
     "esbuild": "^0.13.14",
     "eslint": "^7.31.0",
     "eslint-config-niksy": "^10.0.0",
