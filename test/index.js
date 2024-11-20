@@ -7,6 +7,7 @@ import parseNodeVersion from 'parse-node-version';
 import api from '../index';
 import url from '../proxy/url';
 import qs from '../proxy/querystring';
+import _process from '../proxy/process';
 
 /** @typedef {import('../index').PackageNames} PackageNames */
 
@@ -37,7 +38,7 @@ const packages = {
 	net: 'mock/empty.js',
 	os: 'node_modules/os-browserify',
 	path: 'node_modules/path-browserify',
-	process: 'node_modules/process',
+	process: 'proxy/process',
 	punycode: 'node_modules/punycode',
 	querystring: 'proxy/querystring.js',
 	readline: 'mock/empty.js',
@@ -412,6 +413,17 @@ describe('`querystring` additional exports', function () {
 				}
 			}
 		});
+	});
+});
+
+describe('`process` additional exports', function () {
+	it('has exports for browser environment', function () {
+		assert.equal(_process.title, 'browser');
+		assert.equal(_process.browser, true);
+		assert.equal(_process.arch, 'browser');
+		assert.equal(_process.platform, 'browser');
+		assert.ok(Array.isArray(_process.execArgv));
+		assert.ok(typeof _process.emitWarning !== 'undefined');
 	});
 });
 

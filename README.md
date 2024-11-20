@@ -271,7 +271,7 @@ const b = browserify(
 | `net`                 |                                                                                   | [net](mock/net.js)         |
 | `os`                  | [os-browserify](https://github.com/CoderPuppy/os-browserify)                      |                            |
 | `path`                | [path-browserify](https://github.com/browserify/path-browserify)                  |                            |
-| `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) |
+| `process`             | [process](https://github.com/defunctzombie/node-process)                          | [process](mock/process.js) | Contains additional exports from newer Node                                                           |
 | `punycode`            | [punycode](https://github.com/bestiejs/punycode.js)                               |                            | `punycode@1` for browser support                                                                      |
 | `querystring`         | [querystring-es3](https://github.com/mike-spainhower/querystring)                 |                            | Contains additional exports from newer Node versions                                                  |
 | `readline`            |                                                                                   |                            |
