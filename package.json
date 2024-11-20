@@ -57,7 +57,7 @@
     "constants-browserify": "^1.0.0",
     "create-require": "^1.1.1",
     "crypto-browserify": "^3.11.0",
-    "domain-browser": "^4.22.0",
+    "domain-browser": "4.22.0",
     "events": "^3.0.0",
     "https-browserify": "^1.0.0",
     "isomorphic-timers-promises": "^1.0.1",

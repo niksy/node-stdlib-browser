@@ -2,6 +2,10 @@
 
 ## [Unreleased][]
 
+### Changed
+
+-   Pin `domain-browser` to 4.22.0
+
 ## [1.2.1][] - 2024-09-16
 
 ### Added
