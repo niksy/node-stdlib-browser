@@ -5,17 +5,14 @@ import pkgDir from 'pkg-dir';
  * @param {string} path
  */
 const resolvePath = (path) => {
-	let _require = null;
+	let resolvedPath;
 	try {
-		_require = require;
+		resolvedPath = require.resolve(path);
 	} catch {
-		// Handled
+		resolvedPath = (
+			globalThis.require ?? createRequire(import.meta.url)
+		).resolve(path);
 	}
-	const resolvedPath = (
-		_require ??
-		globalThis.require ??
-		createRequire(import.meta.url)
-	).resolve(path);
 	if (!path.includes('./')) {
 		const directory = pkgDir.sync(resolvedPath) ?? '';
 		return directory;
