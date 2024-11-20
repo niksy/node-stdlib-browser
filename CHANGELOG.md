@@ -5,6 +5,7 @@
 ### Changed
 
 -   Pin `domain-browser` to 4.22.0
+-   Add `require` check for path resolver
 
 ## [1.2.1][] - 2024-09-16
 
