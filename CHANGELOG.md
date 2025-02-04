@@ -2,6 +2,11 @@
 
 ## [Unreleased][]
 
+### Changed
+
+-   Update `crypto-browserify`
+    ([#41](https://github.com/niksy/node-stdlib-browser/pull/41))
+
 ## [1.3.0][] - 2024-11-21
 
 ### Changed
