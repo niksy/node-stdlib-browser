@@ -2,6 +2,8 @@
 
 ## [Unreleased][]
 
+## [1.3.1][] - 2025-02-04
+
 ### Changed
 
 -   Update `crypto-browserify`
@@ -56,6 +58,7 @@
 [1.0.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.0.0
 [1.1.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.1.0
 [1.2.0]: https://github.com/niksy/node-stdlib-browser/tree/v1.2.0
-[Unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/niksy/node-stdlib-browser/compare/v1.3.1...HEAD
+[1.3.1]: https://github.com/niksy/node-stdlib-browser/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/niksy/node-stdlib-browser/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/niksy/node-stdlib-browser/tree/v1.2.1
